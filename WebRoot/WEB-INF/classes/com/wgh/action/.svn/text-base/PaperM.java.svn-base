@@ -1,0 +1,172 @@
+package com.wgh.action;
+
+import java.util.Iterator;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+import org.apache.struts.actions.DispatchAction;
+
+import com.wgh.actionForm.PaperForm;
+import com.wgh.dao.QuestionsDAO;
+import com.wgh.dao.PaperDAO;
+
+public class PaperM extends DispatchAction {
+	private PaperDAO pdao = new PaperDAO();
+	private QuestionsDAO qdao = new QuestionsDAO();
+	//查询
+	public ActionForward paperQuery(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response) {
+		int srow;		
+		String row = request.getParameter("srow");	
+		int allrow = pdao.findAllrow();
+		if(row==null||row==""){
+			srow = 0;
+		}else{
+			srow = Integer.valueOf(row);
+			System.out.println("开始行为"+srow+" allrow:"+allrow);
+		}
+		request.setAttribute("allrow",allrow);
+		request.setAttribute("srow",srow);
+		request.setAttribute("paperQuery", pdao.query(0, srow));		
+		return mapping.findForward("paperQuery");		
+	}
+	//添加第1步
+	public ActionForward pAddone(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session=request.getSession();
+		PaperForm pat = (PaperForm)session.getAttribute("pat");
+		if(pat==null){
+		 pat = (PaperForm)form;
+		}
+		if(pat.getTitle()!=null&&""!=pat.getTitle()){
+			session.setAttribute("pat", pat);
+		}
+		int srow;
+		String row = request.getParameter("srow");	
+		int allrow = qdao.findAllrow(1);
+		if(row==null||row==""){
+			srow = 0;
+		}else{
+			srow = Integer.valueOf(row);
+			System.out.println("开始行为"+srow);
+		}
+		request.setAttribute("allrow",allrow);
+		request.setAttribute("srow",row);
+		request.setAttribute("questionsQuery",qdao.paquery(srow,"1"));
+		
+		return mapping.findForward("pAddtwo");
+		
+	}
+	//添加第2步	
+	public ActionForward pAddtwo(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response){
+		HttpSession session=request.getSession();
+		PaperForm pat = (PaperForm)session.getAttribute("pat");		
+		String st = "";
+		String[] sl=request.getParameterValues("singles");
+		if(sl==null){
+			request.setAttribute("error", "你没有为试卷选择单选题！");
+			return mapping.findForward("error");
+		}else if(sl!=null){
+			st="";
+			for(int i=0;i<sl.length;i++){
+				st=st+sl[i]+",";
+			}
+			st=st.substring(0, st.length()-1);				
+			pat.setSlist(st);
+			System.out.println("已经选了的题："+st+":题的数量为："+sl.length);			
+		}		
+		session.setAttribute("pat", pat);		
+		int srow;				
+		String row = request.getParameter("srow");	
+		int allrow = qdao.findAllrow(2);		
+		if(row==null||row==""){
+			srow = 0;
+		}else{
+			srow = Integer.valueOf(row);
+			System.out.println("开始行为"+srow);
+		}
+		request.setAttribute("allrow",allrow);
+		request.setAttribute("srow",row);
+		request.setAttribute("questionsQuery",qdao.paquery(srow,"2"));
+		
+		return mapping.findForward("pAddthree");		
+	}
+	//添加第3步	
+	public ActionForward pAddthree(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response){
+		HttpSession session=request.getSession();
+		PaperForm pat = (PaperForm)session.getAttribute("pat");
+		String name = "mores",an="";
+		String[] a=request.getParameterValues(name);
+		if(a!=null){
+			for(int j=0;j<a.length;j++){
+				an=an+a[j]+",";
+			}
+			an=an.substring(0, an.length()-1);
+			pat.setMlist(an);
+		}else{
+			request.setAttribute("error", "你没有为试卷选择多选题！");
+			return mapping.findForward("error");
+		}
+		int ret = pdao.insert(pat);
+		if (ret == 1) {
+			return mapping.findForward("paperAdd");
+		} else if (ret == 2) {
+			request.setAttribute("error", "该试卷标题已经添加！");
+			return mapping.findForward("error");
+		} else {
+			request.setAttribute("error", "添加考试题目失败！");
+			return mapping.findForward("error");
+		}				
+	}
+	//修改试卷准备pModify
+	public ActionForward paperUp(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response){
+		int did = Integer.valueOf(request.getParameter("upid"));
+		List pl = pdao.query(did, 0);		
+		PaperForm pf = null;
+		Iterator it = pl.iterator();
+		pf = (PaperForm)it.next();			
+		request.setAttribute("paperUp", pf);
+		return mapping.findForward("paperUp");
+	}
+	//修改试卷
+	public ActionForward pModify(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response){				
+		PaperForm pf = (PaperForm)form;
+		int ret = pdao.update(pf);
+		if (ret == 1) {
+			return mapping.findForward("pModify");		
+		} else {
+			request.setAttribute("error", "教学试卷修改失败！");
+			return mapping.findForward("error");
+		}				
+	}
+	//删除试卷
+	public ActionForward paperDel(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response){
+		HttpSession session=request.getSession();
+		
+		String delid = (String)request.getParameter("upid");
+		if (delid==null||delid=="") {
+			request.setAttribute("error", "获取删除试卷的ID失败！");
+			return mapping.findForward("error");	
+		} else {
+			int flag = pdao.delete(delid);
+			if(flag==1){
+				return mapping.findForward("paperDel");
+			}else{			
+				request.setAttribute("error","删除试卷操作失败！");
+				return mapping.findForward("paperDel");				
+			}				
+		}  
+	}
+}

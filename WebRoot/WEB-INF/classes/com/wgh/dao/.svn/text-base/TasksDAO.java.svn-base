@@ -1,0 +1,62 @@
+package com.wgh.dao;
+
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.wgh.actionForm.CourDeForm;
+import com.wgh.actionForm.TaskForm;
+import com.wgh.core.ConnDB;
+
+public class TasksDAO {
+	private ConnDB conn=new ConnDB();
+	
+	public List Query(int id,int cid,int srow){
+		List list = new ArrayList();
+    	TaskForm task = null;
+        String sql="";       
+        if(id==0){
+            sql = "SELECT * FROM tasks WHERE cid = "+cid+" ORDER BY id DESC LIMIT "+srow+", 10 ";
+        }else{
+        	sql = "SELECT * FROM tasks WHERE id=" +id+ "";
+        }
+        ResultSet rs = conn.executeQuery(sql);          
+        try {
+            while (rs.next()) {
+            	task = new TaskForm();
+            	task.setId(rs.getInt(1));
+            	task.setCid(rs.getInt(2));
+            	task.setStudent(rs.getString(3));
+            	task.setTeacher(rs.getString(4));
+            	task.setName(rs.getString(5));
+            	task.setUrl(rs.getString(6));
+            	task.setTime(rs.getString(7));
+            	task.setMark(rs.getInt(8));
+            	list.add(task);              
+            }
+            rs.close();
+        } catch (Exception e) {
+        	e.printStackTrace();
+        }finally{
+        	conn.close();        	
+        }
+        return list;		
+	}
+
+	public int fandAll(int cid,String tname){
+		int allrow = 0 ; 
+    	String sql = "SELECT count(id) as allrow FROM tasks WHERE cid ="+cid+" AND teacher='"+tname+"'";
+    	try {
+    		ResultSet rs = conn.executeQuery(sql); 
+    		while(rs.next()){
+            allrow = rs.getInt(1);           
+    		}
+    		rs.close();
+        } catch (Exception e) {
+        	e.printStackTrace();
+        }finally{
+        	conn.close();
+        }    	
+    	return allrow;	
+	}
+}

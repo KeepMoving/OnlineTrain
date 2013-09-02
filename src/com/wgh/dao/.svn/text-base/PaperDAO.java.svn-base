@@ -1,0 +1,105 @@
+package com.wgh.dao;
+
+import com.wgh.actionForm.PaperForm;
+import com.wgh.actionForm.QuestionsForm;
+import com.wgh.core.ConnDB;
+import java.sql.*;
+import java.util.*;
+
+public class PaperDAO {
+	private ConnDB conn=new ConnDB();
+	 //查询方法
+    public List query(int id,int srow) {
+    	List plist = new ArrayList();    	
+    	PaperForm pform = null;
+    	String sql="";       
+        if(id==0){
+            sql = "SELECT * FROM papers ORDER BY type ,id DESC LIMIT "+srow+", 10 ";
+        }else{
+        	sql = "SELECT * FROM papers WHERE id=" +id+ "";
+        }
+        try {
+        	ResultSet rs = conn.executeQuery(sql); 
+            while (rs.next()) {
+            	pform = new PaperForm();
+            	pform.setId(rs.getInt(1));
+            	pform.setTitle(rs.getString(2));
+            	pform.setType(rs.getString(3));
+            	pform.setState(rs.getString(4));
+            	pform.setAlltime(rs.getString(5));
+            	pform.setStime(rs.getString(6));
+            	pform.setSingle(rs.getString(7));
+            	pform.setMore(rs.getString(8));
+            	pform.setSlist(rs.getString(9));
+            	pform.setMlist(rs.getString(10));
+            	plist.add(pform);
+            }
+            rs.close();
+        } catch (Exception e) {
+        	e.printStackTrace();
+        }finally{
+        	conn.close();       	
+        }
+        return plist;    	
+    }
+    //修改试卷
+    public int update(PaperForm pf){
+    	String sql="UPDATE papers SET title='"+pf.getTitle()+"',type='"+pf.getType()+"',state='"+pf.getState()+"',alltime='"+pf.getAlltime()+"',stime='"+
+    				pf.getStime()+"',single='"+pf.getSingle()+"',more='"+pf.getMore()+"' where id ='"+pf.getId()+"'";
+        int ret=conn.executeUpdate(sql);
+        System.out.println("修改教学试卷的SQL："+sql);
+        conn.close();
+        return ret;
+    }
+    //添加试卷
+    public int insert(PaperForm pf){
+    	 String sql1="SELECT title FROM papers WHERE title ='"+pf.getTitle()+"'";
+         ResultSet rs = conn.executeQuery(sql1);
+         System.out.println("添加时的查询"+sql1);
+         String sql = "";      
+         int falg = 0;
+             try {
+                 if (rs.next()) {
+                     falg = 2;
+                 } else {                	
+                     sql = "INSERT INTO papers (title,type,state,alltime,stime,single,more,slist,mlist) values('" +
+                     		pf.getTitle()+"','"+pf.getType()+"','"+pf.getState()+"','"+pf.getAlltime()+"','"+pf.getStime()+"','"+pf.getSingle()+"','"
+                            +pf.getMore()+"','"+pf.getSlist()+"','"+pf.getMlist()+"')";                                  
+                     falg = conn.executeUpdate(sql);                    
+                     System.out.println("添加测试试卷的SQL：" + sql);
+                     conn.close();
+                }
+             } catch (Exception ex) {
+                 falg=0;
+             }finally{
+             	conn.close();
+             }
+         return falg;
+    }
+    //查找总行数
+    public int findAllrow(){
+    	int allrow = 0 ;    	   	
+    	try {
+    		ResultSet rs = conn.executeQuery("SELECT count(id) as allrow FROM papers "); 
+    		while(rs.next()){
+            allrow = rs.getInt(1); 
+            System.out.println("总记录为"+allrow); 
+    		}
+    		rs.close();
+        } catch (Exception e) {
+        	e.printStackTrace();
+        }finally{
+        	conn.close();
+        }    	
+    	return allrow;
+    }
+    //删除数据
+    public int delete(String id) {
+    	int flag=0;   	
+        String sql = "DELETE FROM papers where id = " + id +" ";
+        flag = conn.executeUpdate(sql);
+        conn.close();
+    	
+        return flag;      
+    }
+}

@@ -1,0 +1,34 @@
+package com.wgh.actionForm;
+
+import org.apache.struts.action.ActionForm;
+
+public class DataForm extends ActionForm {
+	private int ID;			
+	private String name;	
+	private String link;	
+	private String[] delIdArray=new String[0];
+	public String[] getDelIdArray() {
+		return delIdArray;
+	}
+	public void setDelIdArray(String[] delIdArray) {
+		this.delIdArray = delIdArray;
+	}
+	public int getID() {
+		return ID;
+	}
+	public void setID(int id) {
+		ID = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getLink() {
+		return link;
+	}
+	public void setLink(String link) {
+		this.link = link;
+	}
+}

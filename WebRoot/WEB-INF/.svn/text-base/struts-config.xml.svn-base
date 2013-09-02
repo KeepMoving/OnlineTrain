@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="gb2312"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+<struts-config>
+  <data-sources />
+  <form-beans>    
+ 	<form-bean name="managerForm" type="com.wgh.actionForm.ManagerForm" />
+    <form-bean name="studentForm" type="com.wgh.actionForm.StudentForm" />
+    <form-bean name="dataForm" type="com.wgh.actionForm.DataForm" />
+    <form-bean name="courseForm" type="com.wgh.actionForm.CourseForm" />
+    <form-bean name="paperForm" type="com.wgh.actionForm.PaperForm" />
+    <form-bean name="paResultForm" type="com.wgh.actionForm.PaResultForm" />
+    <form-bean name="questionsForm" type="com.wgh.actionForm.QuestionsForm" />
+    <form-bean name="stuResultForm" type="com.wgh.actionForm.StuResultForm" />
+    <form-bean name="queryResultIfForm" type="com.wgh.actionForm.QueryResultIfForm" />
+    <form-bean name="questionForm" type="com.wgh.actionForm.QuestionForm" />    
+  </form-beans>
+  <global-exceptions />
+  <global-forwards />
+  <action-mappings >
+  <!-- 管理员 -->
+	 <action name="managerForm" path="/manage/manager" scope="request" type="com.wgh.action.Manager" validate="true">
+	  <forward name="managerLoginok" path="/manage/paperm.do?action=paperQuery" />
+      <forward name="managerQuery" path="/manage/manager.jsp"/>
+      <forward name="managerAdd" path="/manage/manager_ok.jsp?para=1" />
+      <forward name="pwdQueryModify" path="/manage/pwd_Modify.jsp" />
+      <forward name="pwdModify" path="/manage/pwd_ok.jsp" />
+      <forward name="managerDel" path="/manage/manager_ok.jsp?para=3" />
+      <forward name="modifypwd" path="/manage/manager.do?action=managerQuery" />
+      <forward name="error" path="/manage/error.jsp" />
+    </action>
+    
+  <!-- 用户 -->
+	 <action name="studentForm" path="/manage/student" scope="request" type="com.wgh.action.Student" validate="true">
+	  <forward name="studentLoginok" path="/student/papers.do?action=papersQuery" />
+      <forward name="studentQuery" path="/manage/student.jsp" />
+      <forward name="studentAdd" path="/student_ok.jsp" />
+      <forward name="modifyQuery" path="/student/student_Modify.jsp" />
+      <forward name="studentModify" path="/student/studentM_ok.jsp" />
+      <forward name="studentDel" path="/manage/student_ok.jsp?para=3" />
+      <forward name="seekPwd1" path="/seekPwd1.jsp"/>
+      <forward name="seekPwd2" path="/seekPwd2.jsp"/>
+      <forward name="error" path="/error.jsp" />
+    </action>
+    
+    <!-- 课程考卷管理-->
+	 <action name="paperForm" path="/manage/paperm" type="com.wgh.action.PaperM" scope="request" parameter="action">
+      <forward name="paperQuery" path="/manage/papers.jsp"/>
+      <forward name="pAddtwo" path="/manage/pAddtwo.jsp"/>
+      <forward name="pAddthree" path="/manage/pAddthree.jsp"/>
+      <forward name="paperAdd" path="/manage/paper_ok.jsp?para=1" />
+      <forward name="paperDel" path="/manage/paper_ok.jsp?para=3" />
+      <forward name="paperUp" path="/manage/paperup.jsp"/>  
+      <forward name="pModify" path="/manage/paper_ok.jsp?para=2" />
+      <forward name="error" path="/manage/error.jsp" />
+    </action> 
+    
+  <!-- 考生课程竞赛成绩-->    
+    <action name="queryResultIfForm" path="/manage/paResultIf" scope="session" type="com.wgh.action.PaResult" validate="true">
+      <forward name="paResultQuery" path="/manage/paResQuery.jsp" />
+      <forward name="paResultsQuery" path="/student/paresquery.jsp" />      
+      <forward name="error" path="/error.jsp" />
+    </action>
+    
+    <!--培训课程管理-->
+	 <action name="courseForm" path="/manage/courses" type="com.wgh.action.Courses" scope="request" parameter="action">
+      <forward name="coursesQuery" path="/manage/courses.jsp" />
+      <forward name="courAdd" path="/manage/courses_ok.jsp?para=1" />
+	  <forward name="coursesUp" path="/manage/coursesup.jsp"/>
+	  <forward name="courUpdo" path="/manage/courses_ok.jsp?para=2" />
+	  <forward name="coursesMan" path="/manage/coursesman.jsp"/>	  
+	  <forward name="error" path="/manage/error.jsp" />  
+    </action>
+    
+    <!--培训课程学习-->
+	 <action name="courseForm" path="/student/course" type="com.wgh.action.Course" scope="request" parameter="action">
+      <forward name="courQuery" path="/student/courses.jsp" />
+      <forward name="courAdd" path="/student/courses_ok.jsp?para=1" />
+	  
+    </action>
+    
+  <!-- 考试题目-->
+	 <action name="questionsForm" path="/manage/questions" type="com.wgh.action.Questions" scope="request" parameter="action">
+      <forward name="questionsQuery" path="/manage/questions.jsp" />
+      <forward name="questionsAddQuery" path="/manage/questions_Add.jsp"/>
+      <forward name="questionsAdd" path="/manage/questions_ok.jsp?para=1" />
+      <forward name="questionsDel" path="/manage/questions_ok.jsp?para=3" />
+      <forward name="questionsModifyQuery" path="/manage/questions_Modify.jsp"/>
+      <forward name="questionsViewQuery" path="/manage/questions_view.jsp"/>
+      <forward name="questionsModify" path="/manage/questions_ok.jsp?para=2" />
+      <forward name="singleQue" path="/student/questions.jsp" />
+      <forward name="submitSingle" path="/index.jsp" />
+      <forward name="moreleQue" path="/student/questionm.jsp" />
+   	  <forward name="questionSearch" path="/manage/questions.jsp" />
+      <forward name="queryTaoTi" path="/manage/selTaoTi.jsp"/>
+      <forward name="setSMOption" path="/manage/setSMOption.jsp"/>
+      <forward name="error" path="/manage/error.jsp" />
+    </action>    
+  
+  <!-- 套题学生测试-->
+	<action name="paperForm" path="/student/papers" type="com.wgh.action.Papers" scope="request" parameter="action">
+      <forward name="papersQuery" path="/student/papers.jsp" />
+      <forward name="paperTest" path="/student/paperTest.jsp" />
+      <forward name="testPa" path="/student/patestOK.jsp" />
+      <forward name="error" path="/student/error.jsp" />   
+    </action>
+  <!--课程资料-->
+	<action name="dataForm" path="/manage/data" type="com.wgh.action.Data" scope="request" parameter="action">
+      <forward name="dataQuery" path="/manage/datas.jsp" />
+      <forward name="datasQuery" path="/student/datas.jsp" />
+      <forward name="datasAdd" path="/manage/datas_ok.jsp?para=1" />
+      <forward name="dataModifyQuery" path="/manage/data_Modify.jsp" />      
+      <forward name="dataModify" path="/manage/datas_ok.jsp?para=2" />
+      <forward name="datasDel" path="/manage/datas_ok.jsp?para=3" />
+      <forward name="error" path="/manage/error.jsp" />       
+      <forward name="singleQue" path="/student/questions.jsp" />
+      <forward name="submitSingle" path="/index.jsp" />     
+    </action>
+      
+  </action-mappings>
+  <controller processorClass="com.wgh.action.SelfRequestProcessor" />
+  <message-resources parameter="com.wgh.struts.ApplicationResources" />
+</struts-config>
+

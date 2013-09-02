@@ -1,0 +1,127 @@
+package com.wgh.action;
+
+import javax.servlet.http.*;
+import org.apache.struts.action.*;
+
+import com.wgh.actionForm.QueryResultIfForm;
+import com.wgh.actionForm.PaResultForm;
+import com.wgh.dao.PaResultDAO;
+
+public class PaResult extends Action {
+	private PaResultDAO stuResultDAO = null;
+	public PaResult() {
+		this.stuResultDAO = new PaResultDAO();
+	}
+	public ActionForward execute(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response) {
+		String action = request.getParameter("action");
+		System.out.println("获取的查询字符串：" + action);
+		if (action == null || "".equals(action)) {
+			return mapping.findForward("error");
+		}else if ("paResultQuery".equals(action)) {
+			return paResultQuery(mapping, form, request, response);
+		}else if ("paResultsQuery".equals(action)) {
+			return paResultsQuery(mapping, form, request, response);
+		} else if ("stuResultQueryS".equals(action)) {
+			return stuResultQueryS(mapping, form, request, response);
+		}else{
+		request.setAttribute("error", "操作失败！");
+		return mapping.findForward("error");
+		}
+	}
+	
+	//学生查询
+	private ActionForward paResultsQuery(ActionMapping mapping,
+			ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) {		
+		HttpSession session=request.getSession();
+		QueryResultIfForm parf =(QueryResultIfForm)form;
+		QueryResultIfForm parftemp = (QueryResultIfForm)session.getAttribute("parf");
+		if(parf.getKey()!=null){
+			int srow = 0;
+			int allrow = stuResultDAO.findall(parf);
+			request.setAttribute("allrow",allrow);
+			request.setAttribute("srow",srow);
+			request.setAttribute("stuResultQuery",stuResultDAO.query(srow, parf));
+			session.setAttribute("parf", parf);
+		}else if(parftemp!=null){
+			int srow;		
+			String row = request.getParameter("srow");
+			if(row==null||row==""){
+				srow = 0;
+			}else{
+				srow = Integer.valueOf(row);
+				System.out.println("开始行为"+srow);
+			}
+			int allrow = stuResultDAO.findall(parftemp);
+			request.setAttribute("allrow",allrow);
+			request.setAttribute("srow",row);
+			request.setAttribute("stuResultQuery",stuResultDAO.query(srow,parftemp));
+			session.setAttribute("parf", parftemp);
+		}else{
+			int srow;		
+			String row = request.getParameter("srow");	
+			int allrow = stuResultDAO.findall(parf);		
+			if(row==null||row==""){
+				srow = 0;
+			}else{
+				srow = Integer.valueOf(row);
+				System.out.println("开始行为"+srow);
+			}
+			request.setAttribute("allrow",allrow);
+			request.setAttribute("srow",srow);
+			request.setAttribute("stuResultQuery",stuResultDAO.query(srow,parf));
+		}		
+		return mapping.findForward("paResultsQuery");
+	
+	}
+	// 管理员查询考生成绩
+	private ActionForward paResultQuery(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session=request.getSession();
+		QueryResultIfForm parf =(QueryResultIfForm)form;
+		QueryResultIfForm parftemp = (QueryResultIfForm)session.getAttribute("parf");
+		if(parf.getKey()!=null){
+			int srow = 0;
+			int allrow = stuResultDAO.findall(parf);
+			request.setAttribute("allrow",allrow);
+			request.setAttribute("srow",srow);
+			request.setAttribute("stuResultQuery",stuResultDAO.query(srow, parf));
+			session.setAttribute("parf", parf);
+		}else if(parftemp!=null){
+			int srow;		
+			String row = request.getParameter("srow");
+			if(row==null||row==""){
+				srow = 0;
+			}else{
+				srow = Integer.valueOf(row);
+				System.out.println("开始行为"+srow);
+			}
+			int allrow = stuResultDAO.findall(parftemp);
+			request.setAttribute("allrow",allrow);
+			request.setAttribute("srow",row);
+			request.setAttribute("stuResultQuery",stuResultDAO.query(srow,parftemp));
+			session.setAttribute("parf", parftemp);
+		}else{
+			int srow;		
+			String row = request.getParameter("srow");	
+			int allrow = stuResultDAO.findall(parf);		
+			if(row==null||row==""){
+				srow = 0;
+			}else{
+				srow = Integer.valueOf(row);
+				System.out.println("开始行为"+srow);
+			}
+			request.setAttribute("allrow",allrow);
+			request.setAttribute("srow",srow);
+			request.setAttribute("stuResultQuery",stuResultDAO.query(srow,parf));
+		}		
+		return mapping.findForward("paResultQuery");
+	}
+	// 考生查询自己的成绩
+	private ActionForward stuResultQueryS(ActionMapping mapping, ActionForm form,
+		HttpServletRequest request, HttpServletResponse response) {
+		request.setAttribute("stuResultQuery", stuResultDAO.query(request.getParameter("ID").toString()));
+		return mapping.findForward("stuResultQueryS");
+	}	
+}

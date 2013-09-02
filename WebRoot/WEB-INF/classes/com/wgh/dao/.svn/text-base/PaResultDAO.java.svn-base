@@ -1,0 +1,111 @@
+package com.wgh.dao;
+
+import com.wgh.actionForm.*;
+import com.wgh.core.ConnDB;
+import java.sql.*;
+import java.util.*;
+
+public class PaResultDAO {
+	private ConnDB conn=new ConnDB();
+	//添加
+	public int insert(PaResultForm prf){		
+        String sql = "";      
+        int falg = 0;
+            try {
+            	sql = "INSERT INTO paresult (paid,patitle,userid,sscore,mscore,subtime) values(" +prf.getPaid()+",'"+prf.getPatitle()+"','"+prf.getUserid()+"',"
+            	+prf.getSscore()+","+prf.getMscore()+",'"+prf.getSubtime()+"')";                                  
+                falg = conn.executeUpdate(sql);                    
+                System.out.println("添加测试试卷的SQL：" + sql);
+                conn.close();              
+            } catch (Exception ex) {
+                falg=0;
+            }finally{
+            	conn.close();
+            }
+        return falg;
+	}
+	public List query(String stuId) {
+    	List stuResultList = new ArrayList();
+    	PaResultForm stuResultForm1 = null;
+        String sql="";
+        if(stuId.equals("")){
+            sql = "SELECT * FROM paresult ORDER BY subtime DESC";
+        }else{
+        	sql = "SELECT * FROM paresult WHERE userid='" +stuId+ "'";
+        }
+        ResultSet rs = conn.executeQuery(sql);
+        try {
+            while (rs.next()) {
+                stuResultForm1 = new PaResultForm();
+                stuResultForm1.setId(rs.getInt(1));
+                stuResultForm1.setPaid(rs.getInt(2));
+                stuResultForm1.setPatitle(rs.getString(3));
+                stuResultForm1.setUserid(rs.getString(4));
+                stuResultForm1.setSscore(rs.getInt(5));
+                stuResultForm1.setMscore(rs.getInt(6));
+                stuResultForm1.setAllscore(stuResultForm1.getSscore()+stuResultForm1.getMscore());              
+                stuResultForm1.setSubtime(rs.getString(7));               
+                stuResultList.add(stuResultForm1);
+            }
+        } catch (Exception ex) {
+        	System.out.println("查询学生成绩(全部和按用户ID精确查询)时产生的错误："+ex.getMessage());
+        }
+        return stuResultList;
+    }
+    //查询
+	public List query(int srow,QueryResultIfForm q){
+    	List stuResultList = new ArrayList();
+    	PaResultForm stuResultForm1 = null;
+        String sql;
+        if(q.getQueryIf()==null){
+        	sql="SELECT * FROM paresult ORDER BY subtime DESC LIMIT "+srow+", 10 ";
+        }else{
+        	sql="SELECT * FROM paresult WHERE "+q.getQueryIf()+" like '%"+q.getKey()+"%' ORDER BY (sscore+mscore) DESC, " +
+        		"subtime ASC LIMIT "+srow+", 10 ";
+        }        
+        System.out.println("SQL："+sql);
+        ResultSet rs = conn.executeQuery(sql);
+        try {
+            while (rs.next()) {
+            	stuResultForm1 = new PaResultForm();
+                stuResultForm1.setId(rs.getInt(1));
+                stuResultForm1.setPaid(rs.getInt(2));
+                stuResultForm1.setPatitle(rs.getString(3));
+                stuResultForm1.setUserid(rs.getString(4));
+                stuResultForm1.setSscore(rs.getInt(5));
+                stuResultForm1.setMscore(rs.getInt(6));
+                stuResultForm1.setAllscore(stuResultForm1.getSscore()+stuResultForm1.getMscore());              
+                stuResultForm1.setSubtime(rs.getString(7));               
+                stuResultList.add(stuResultForm1);
+            }
+        } catch (Exception ex) {
+        	System.out.println("带条件查询学生成绩时产生的错误："+ex.getMessage());
+        }
+        return stuResultList;
+    }
+	
+	//查询总记录数量
+	public int findall(QueryResultIfForm q){
+		int allrow = 0 ; 
+    	String sql;
+    	if(q.getQueryIf()==null){
+    		 sql = "SELECT count(id) as allrow FROM paresult ";
+    	}else{
+    		sql = "SELECT count(id) as allrow FROM paresult WHERE "+q.getQueryIf()+"like '%"+q.getKey()+"%' ";
+    	}
+    	try {
+    		ResultSet rs = conn.executeQuery(sql); 
+    		while(rs.next()){
+            allrow = rs.getInt(1); 
+            System.out.println("总记录为"+allrow); 
+    		}
+    		rs.close();
+        } catch (Exception e) {
+        	e.printStackTrace();
+        }finally{
+        	conn.close();
+        }    	
+    	return allrow;
+	}
+
+}

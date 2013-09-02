@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlowViewLayout Version="1.2">
+  <StrutsActivity path="/manage/manager.do" location="-420,-60" dimension="178,84" />
+  <StrutsActivity path="/manage/student.do" location="-360,-405" dimension="181,106" />
+  <StrutsActivity path="/manage/paperm.do" location="1395,135" dimension="172,84" />
+  <StrutsActivity path="/manage/paResultIf.do" location="945,-150" dimension="184,84" />
+  <StrutsActivity path="/manage/courses.do" location="120,-30" dimension="178,84" />
+  <StrutsActivity path="/student/course.do" location="255,-510" dimension="172,84" />
+  <StrutsActivity path="/manage/questions.do" location="1635,-465" dimension="190,84" />
+  <StrutsActivity path="/student/papers.do" location="-540,315" dimension="172,84" />
+  <StrutsActivity path="/manage/data.do" location="135,405" dimension="160,84" />
+  <StrutsActivity path="/manage/error.jsp" location="705,240" dimension="142,48" />
+  <StrutsActivity path="/manage/manager_ok.jsp" location="-300,-150" dimension="172,48" />
+  <StrutsActivity path="/manage/pwd_Modify.jsp" location="-540,-165" dimension="172,48" />
+  <StrutsActivity path="/manage/manager.jsp" location="-465,105" dimension="154,48" />
+  <StrutsActivity path="/manage/pwd_ok.jsp" location="-540,15" dimension="148,48" />
+  <StrutsActivity path="/error.jsp" location="990,-255" dimension="100,48" />
+  <StrutsActivity path="/student_ok.jsp" location="-315,-240" dimension="130,48" />
+  <StrutsActivity path="/student/studentM_ok.jsp" location="75,-360" dimension="184,48" />
+  <StrutsActivity path="/student/student_Modify.jsp" location="-180,-510" dimension="202,48" />
+  <StrutsActivity path="/seekPwd1.jsp" location="-540,-420" dimension="118,48" />
+  <StrutsActivity path="/seekPwd2.jsp" location="-540,-330" dimension="118,48" />
+  <StrutsActivity path="/manage/student.jsp" location="-420,-510" dimension="154,48" />
+  <StrutsActivity path="/manage/student_ok.jsp" location="-495,-240" dimension="172,48" />
+  <StrutsActivity path="/manage/paperofcs.jsp" location="1635,120" dimension="166,48" />
+  <StrutsActivity path="/manage/pAddtwo.jsp" location="1395,285" dimension="154,48" />
+  <StrutsActivity path="/manage/paper_ok.jsp" location="1455,45" dimension="160,48" />
+  <StrutsActivity path="/manage/pAddthree.jsp" location="1635,195" dimension="166,48" />
+  <StrutsActivity path="/manage/paperup.jsp" location="1545,255" dimension="154,48" />
+  <StrutsActivity path="/student/paperofcs.jsp" location="1155,150" dimension="172,48" />
+  <StrutsActivity path="/manage/papers.jsp" location="1275,240" dimension="148,48" />
+  <StrutsActivity path="/student/paresquery.jsp" location="855,0" dimension="178,48" />
+  <StrutsActivity path="/manage/paResQuery.jsp" location="1095,0" dimension="172,48" />
+  <StrutsActivity path="/manage/tasksman.jsp" location="45,90" dimension="160,48" />
+  <StrutsActivity path="/manage/coursesman.jsp" location="420,-15" dimension="172,48" />
+  <StrutsActivity path="/manage/courses.jsp" location="-90,-90" dimension="154,48" />
+  <StrutsActivity path="/manage/courses_ok.jsp" location="195,-120" dimension="172,48" />
+  <StrutsActivity path="/manage/coursesup.jsp" location="-105,0" dimension="166,48" />
+  <StrutsActivity path="/student/tasksman.jsp" location="525,-450" dimension="166,48" />
+  <StrutsActivity path="/student/coursesman.jsp" location="510,-540" dimension="178,48" />
+  <StrutsActivity path="/student/courses.jsp" location="285,-390" dimension="160,48" />
+  <StrutsActivity path="/manage/questions_ok.jsp" location="1950,-450" dimension="184,61" />
+  <StrutsActivity path="/student/questions.jsp" location="1590,-240" dimension="172,48" />
+  <StrutsActivity path="/manage/questions.jsp" location="1635,-600" dimension="166,48" />
+  <StrutsActivity path="/student/questionm.jsp" location="1380,-435" dimension="172,48" />
+  <StrutsActivity path="/student/quesofcs.jsp" location="1830,-225" dimension="166,48" />
+  <StrutsActivity path="/manage/quesofcs.jsp" location="1860,-330" dimension="160,48" />
+  <StrutsActivity path="/manage/questions_Add.jsp" location="1890,-525" dimension="190,48" />
+  <StrutsActivity path="/manage/questions_Modify.jsp" location="1380,-510" dimension="208,48" />
+  <StrutsActivity path="/manage/questions_view.jsp" location="1380,-360" dimension="196,48" />
+  <StrutsActivity path="/student/error.jsp" location="-420,435" dimension="148,48" />
+  <StrutsActivity path="/student/paperTest.jsp" location="-435,225" dimension="172,48" />
+  <StrutsActivity path="/student/patestOK.jsp" location="-630,435" dimension="166,48" />
+  <StrutsActivity path="/student/papers.jsp" location="-615,225" dimension="154,48" />
+  <StrutsActivity path="/manage/datas.jsp" location="120,525" dimension="142,48" />
+  <StrutsActivity path="/manage/datas_ok.jsp" location="150,300" dimension="160,48" />
+  <StrutsActivity path="/manage/data_Modify.jsp" location="345,390" dimension="178,48" />
+  <StrutsActivity path="/student/datas.jsp" location="390,465" dimension="148,48" />
+  <StrutsTransition id="/manage/data.do,singleQue,/student/questions.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="295,447" />
+      <AbsolutePoint location="1099,447" />
+      <AbsolutePoint location="1099,-225" />
+      <AbsolutePoint location="1590,-225" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/paResultIf.do,error,/error.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1040,-150" />
+      <AbsolutePoint location="1040,-207" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/student.do,seekPwd2,/seekPwd2.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="-360,-314" />
+      <AbsolutePoint location="-422,-314" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/student.do,studentDel,/manage/student_ok.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="-345,-299" />
+      <AbsolutePoint location="-345,-240" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/student/papers.do,paperTest,/student/paperTest.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="-383,315" />
+      <AbsolutePoint location="-383,273" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/paperm.do,csQuery,/manage/paperofcs.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1567,150" />
+      <AbsolutePoint location="1635,150" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/data.do,submitSingle,/index.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="295,420" />
+      <AbsolutePoint location="555,420" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/courses.do,courAdd,/manage/courses_ok.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="281,-30" />
+      <AbsolutePoint location="281,-72" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/student/course.do,courQuery,/student/courses.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="365,-426" />
+      <AbsolutePoint location="365,-390" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/data.do,dataModify,/manage/datas_ok.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="200,405" />
+      <AbsolutePoint location="200,348" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/questions.do,questionsQuery,/manage/questions.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1688,-465" />
+      <AbsolutePoint location="1688,-552" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/questions.do,questionsDel,/manage/questions_ok.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1825,-441" />
+      <AbsolutePoint location="1950,-441" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/questions.do,questionsAddQuery,/manage/questions_Add.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1748,-465" />
+      <AbsolutePoint location="1748,-495" />
+      <AbsolutePoint location="1890,-495" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/student/papers.do,testPa,/student/patestOK.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="-525,399" />
+      <AbsolutePoint location="-525,435" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/manager.do,pwdQueryModify,/manage/pwd_Modify.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="-405,-60" />
+      <AbsolutePoint location="-405,-117" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/data.do,error,/manage/error.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="260,405" />
+      <AbsolutePoint location="260,363" />
+      <AbsolutePoint location="776,363" />
+      <AbsolutePoint location="776,288" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/student.do,modifyQuery,/student/student_Modify.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="-179,-382" />
+      <AbsolutePoint location="-65,-382" />
+      <AbsolutePoint location="-65,-462" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/paResultIf.do,paResultQuery,/manage/paResQuery.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1114,-66" />
+      <AbsolutePoint location="1114,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/manager.do,managerDel,/manage/manager_ok.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="-285,-60" />
+      <AbsolutePoint location="-285,-102" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/courses.do,error,/manage/error.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="220,54" />
+      <AbsolutePoint location="220,168" />
+      <AbsolutePoint location="746,168" />
+      <AbsolutePoint location="746,240" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/student.do,studentAdd,/student_ok.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="-280,-299" />
+      <AbsolutePoint location="-280,-240" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/student.do,studentLoginok,/student/course.do,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="-281,-405" />
+      <AbsolutePoint location="-281,-447" />
+      <AbsolutePoint location="255,-447" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/courses.do,coursesUp,/manage/coursesup.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="120,24" />
+      <AbsolutePoint location="61,24" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/manager.do,managerAdd,/manage/manager_ok.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="-257,-60" />
+      <AbsolutePoint location="-257,-102" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/paperm.do,paperAdd,/manage/paper_ok.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1481,135" />
+      <AbsolutePoint location="1481,93" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/data.do,datasAdd,/manage/datas_ok.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="170,405" />
+      <AbsolutePoint location="170,348" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/data.do,dataModifyQuery,/manage/data_Modify.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="295,420" />
+      <AbsolutePoint location="345,420" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/courses.do,coursesMan,/manage/coursesman.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="298,9" />
+      <AbsolutePoint location="420,9" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/manager.do,error,/manage/error.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="-248,24" />
+      <AbsolutePoint location="-248,258" />
+      <AbsolutePoint location="705,258" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/manager.do,modifypwd,/manage/manager.do,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="-338,-60" />
+      <AbsolutePoint location="-338,-75" />
+      <AbsolutePoint location="-195,-75" />
+      <AbsolutePoint location="-195,-15" />
+      <AbsolutePoint location="-242,-15" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/manager.do,pwdModify,/manage/pwd_ok.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="-420,-18" />
+      <AbsolutePoint location="-466,-18" />
+      <AbsolutePoint location="-466,15" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/student.do,seekPwd1,/seekPwd1.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="-360,-390" />
+      <AbsolutePoint location="-422,-390" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/student/course.do,tasksMan,/student/tasksman.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="427,-441" />
+      <AbsolutePoint location="525,-441" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/questions.do,csQuery,/manage/quesofcs.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1730,-381" />
+      <AbsolutePoint location="1730,-327" />
+      <AbsolutePoint location="1860,-327" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/questions.do,questionsModify,/manage/questions_ok.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1825,-397" />
+      <AbsolutePoint location="1950,-397" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/questions.do,tcsQuery,/student/quesofcs.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1777,-381" />
+      <AbsolutePoint location="1777,-207" />
+      <AbsolutePoint location="1830,-207" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/student.do,studentModify,/student/studentM_ok.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="-179,-345" />
+      <AbsolutePoint location="75,-345" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/paperm.do,paperQuery,/manage/papers.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1410,219" />
+      <AbsolutePoint location="1410,240" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/student.do,error,/error.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="-179,-315" />
+      <AbsolutePoint location="-5,-315" />
+      <AbsolutePoint location="-5,-225" />
+      <AbsolutePoint location="990,-225" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/questions.do,questionsModifyQuery,/manage/questions_Modify.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1658,-465" />
+      <AbsolutePoint location="1658,-495" />
+      <AbsolutePoint location="1588,-495" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/courses.do,coursesQuery,/manage/courses.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="210,-30" />
+      <AbsolutePoint location="210,-57" />
+      <AbsolutePoint location="64,-57" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/questions.do,queryTaoTi,/manage/selTaoTi.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1737,-381" />
+      <AbsolutePoint location="1737,255" />
+      <AbsolutePoint location="1143,255" />
+      <AbsolutePoint location="1143,643" />
+      <AbsolutePoint location="430,643" />
+      <AbsolutePoint location="75,707" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/paperm.do,pAddtwo,/manage/pAddtwo.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1472,219" />
+      <AbsolutePoint location="1472,285" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/data.do,dataQuery,/manage/datas.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="191,489" />
+      <AbsolutePoint location="191,525" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/paperm.do,pAddthree,/manage/pAddthree.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1567,204" />
+      <AbsolutePoint location="1635,204" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/questions.do,questionSearch,/manage/questions.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1718,-465" />
+      <AbsolutePoint location="1718,-552" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/paperm.do,paperDel,/manage/paper_ok.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1565,135" />
+      <AbsolutePoint location="1565,93" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/questions.do,setSMOption,/manage/setSMOption.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1670,-465" />
+      <AbsolutePoint location="1670,-525" />
+      <AbsolutePoint location="1468,-525" />
+      <AbsolutePoint location="1468,-480" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/questions.do,moreleQue,/student/questionm.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1635,-411" />
+      <AbsolutePoint location="1552,-411" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/courses.do,coursesDel,/manage/courses_ok.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="251,-30" />
+      <AbsolutePoint location="251,-72" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/paperm.do,paperUp,/manage/paperup.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1552,219" />
+      <AbsolutePoint location="1552,255" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/student/papers.do,error,/student/error.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="-383,399" />
+      <AbsolutePoint location="-383,435" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/student/papers.do,papersQuery,/student/papers.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="-525,315" />
+      <AbsolutePoint location="-525,273" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/questions.do,error,/manage/error.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1670,-381" />
+      <AbsolutePoint location="1670,-267" />
+      <AbsolutePoint location="776,-267" />
+      <AbsolutePoint location="776,240" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/questions.do,singleQue,/student/questions.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1700,-381" />
+      <AbsolutePoint location="1700,-240" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/questions.do,questionsViewQuery,/manage/questions_view.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1640,-381" />
+      <AbsolutePoint location="1640,-345" />
+      <AbsolutePoint location="1576,-345" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/paperm.do,pModify,/manage/paper_ok.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1535,135" />
+      <AbsolutePoint location="1535,93" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/manager.do,managerLoginok,/manage/courses.do,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="-242,15" />
+      <AbsolutePoint location="-165,15" />
+      <AbsolutePoint location="-165,-15" />
+      <AbsolutePoint location="120,-15" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/paResultIf.do,paResultsQuery,/student/paresquery.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="960,-66" />
+      <AbsolutePoint location="960,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/manager.do,managerQuery,/manage/manager.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="-361,24" />
+      <AbsolutePoint location="-361,105" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/data.do,datasDel,/manage/datas_ok.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="230,405" />
+      <AbsolutePoint location="230,348" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/questions.do,submitSingle,/index.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1635,-449" />
+      <AbsolutePoint location="1553,-449" />
+      <AbsolutePoint location="1553,182" />
+      <AbsolutePoint location="740,182" />
+      <AbsolutePoint location="605,375" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/paperm.do,error,/manage/error.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1440,135" />
+      <AbsolutePoint location="1440,108" />
+      <AbsolutePoint location="806,108" />
+      <AbsolutePoint location="806,240" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/student/course.do,coursesMan,/student/coursesman.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="427,-495" />
+      <AbsolutePoint location="510,-495" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/paperm.do,tcsQuery,/student/paperofcs.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1395,174" />
+      <AbsolutePoint location="1327,174" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/courses.do,tasksMan,/manage/tasksman.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="135,54" />
+      <AbsolutePoint location="135,90" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/student.do,studentQuery,/manage/student.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="-343,-405" />
+      <AbsolutePoint location="-343,-462" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/questions.do,questionsAdd,/manage/questions_ok.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1825,-419" />
+      <AbsolutePoint location="1950,-419" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/data.do,datasQuery,/student/datas.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="295,474" />
+      <AbsolutePoint location="390,474" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/manage/courses.do,courUpdo,/manage/courses_ok.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="298,48" />
+      <AbsolutePoint location="313,48" />
+      <AbsolutePoint location="313,-72" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+</FlowViewLayout>
+

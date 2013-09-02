@@ -1,0 +1,157 @@
+package com.wgh.action;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+import org.apache.struts.actions.DispatchAction;
+
+import com.wgh.actionForm.CourseForm;
+import com.wgh.actionForm.DataForm;
+import com.wgh.dao.CourseDAO;
+import com.wgh.dao.CourDeDAO;
+import com.wgh.dao.TasksDAO;
+
+public class Courses extends DispatchAction{
+	private CourseDAO cdao = new CourseDAO();
+	private TasksDAO tdao = new TasksDAO();
+	private CourDeDAO cedao = new CourDeDAO();
+	
+	//课程查询
+	public ActionForward coursesQuery(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response){
+		int srow;
+		String row = request.getParameter("srow");
+		HttpSession se = request.getSession();
+		String tname = (String)se.getAttribute("manager");
+		int allrow = cdao.fandAll(tname);		
+		if(row==null||row==""){
+			srow = 0;
+		}else{
+			srow = Integer.valueOf(row);			
+		}
+		System.out.println(row+"	"+tname+"	"+allrow);
+		request.setAttribute("allrow",allrow);
+		request.setAttribute("srow",row);
+		request.setAttribute("clist",cdao.query(0,srow,tname));
+		
+		return mapping.findForward("coursesQuery");
+	}
+	
+	//课程管理，计划及学员作业管理
+	public ActionForward coursesMan(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response) {
+		int cid; 
+		HttpSession se = request.getSession();
+		CourseForm ctemp = (CourseForm)se.getAttribute("course");
+		if(ctemp==null){
+			cid = Integer.parseInt(request.getParameter("upid"));
+		}else{
+			cid = ctemp.getId();
+		}
+		String tname =(String)se.getAttribute("manager");		
+		int srow;
+		String row = request.getParameter("srow");		
+		int allrow =cedao.fandAll(cid);
+		if(row==null||row==""){
+			srow = 0;
+		}else{
+			srow = Integer.valueOf(row);			
+		}		
+		request.setAttribute("allrow",allrow);
+		request.setAttribute("srow",srow);
+		se.setAttribute("course",(CourseForm)cdao.query(cid, srow, tname).get(0));
+		request.setAttribute("celist",cedao.Query(0, cid, srow));
+
+		return mapping.findForward("coursesMan");
+	}
+	
+	//课程作业管理tasksMan
+	public ActionForward tasksMan(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response) {
+		int cid; 
+		HttpSession se = request.getSession();
+		CourseForm ctemp = (CourseForm)se.getAttribute("course");
+		String tname = (String)se.getAttribute("manager");
+		if(ctemp==null){
+			cid = Integer.parseInt(request.getParameter("upid"));
+		}else{
+			cid = ctemp.getId();
+		}		
+		int srow;
+		String row = request.getParameter("srow");		
+		int allrow =cedao.fandAll(cid);
+		if(row==null||row==""){
+			srow = 0;
+		}else{
+			srow = Integer.valueOf(row);			
+		}		
+		request.setAttribute("allrow",allrow);
+		request.setAttribute("srow",srow);
+		se.setAttribute("course",(CourseForm)cdao.query(cid, srow, tname).get(0));
+		request.setAttribute("tlist",tdao.Query(0, cid, srow));
+		return mapping.findForward("tasksMan");
+	}
+	
+	//课程修改查询
+	public ActionForward coursesUp(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response) {
+		int cid = Integer.parseInt(request.getParameter("upid"));
+		HttpSession se = request.getSession();
+		String tname =(String)se.getAttribute("manager");
+		request.setAttribute("course",(CourseForm)cdao.query(cid, 0, tname).get(0));	
+		return mapping.findForward("coursesUp");
+	}
+	
+	//课程修改
+	public ActionForward courUpdo(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response) {
+		CourseForm cform =(CourseForm)form;
+		int rs = cdao.update(cform);
+		if (rs == 0) {
+			request.setAttribute("error", "课程修改失败！");
+			return mapping.findForward("error");
+		} else {
+			return mapping.findForward("courUpdo");
+		}		
+	}
+	
+	//添加培训课程
+	public ActionForward courAdd(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response) {
+		CourseForm cf = (CourseForm)form;
+		int ret = cdao.insert(cf);
+		if (ret == 1) {
+			return mapping.findForward("courAdd");
+		} else if (ret == 2) {
+			request.setAttribute("error", "该培训课程已存在，请重新输入！");
+			return mapping.findForward("error");
+		} else {
+			request.setAttribute("error", "添加培训课程失败！");
+			return mapping.findForward("error");
+		}		
+	}
+	
+	//培训课程删除 coursesDel
+	public ActionForward coursesDel(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response) {
+		CourseForm cf = (CourseForm)form;
+		int cid = Integer.parseInt(request.getParameter("upid"));
+		int ret = cdao.insert(cf);
+		if (ret == 1) {
+			return mapping.findForward("courAdd");
+		} else if (ret == 2) {
+			request.setAttribute("error", "该培训课程已存在，请重新输入！");
+			return mapping.findForward("error");
+		} else {
+			request.setAttribute("error", "添加培训课程失败！");
+			return mapping.findForward("error");
+		}		
+	}
+	
+}

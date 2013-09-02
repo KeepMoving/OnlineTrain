@@ -1,0 +1,429 @@
+/*
+MySQL Data Transfer
+Source Host: localhost
+Source Database: acm
+Target Host: localhost
+Target Database: acm
+Date: 2010-11-13 20:33:08
+*/
+
+SET FOREIGN_KEY_CHECKS=0;
+-- ----------------------------
+-- Table structure for acm_question
+-- ----------------------------
+DROP TABLE IF EXISTS `acm_question`;
+CREATE TABLE `acm_question` (
+  `id` int(10) unsigned zerofill NOT NULL auto_increment,
+  `title` varchar(100) NOT NULL,
+  `qdetail` varchar(8000) NOT NULL,
+  `type` varchar(6) NOT NULL,
+  `testin` varchar(5000) NOT NULL,
+  `testout` varchar(8000) NOT NULL,
+  `tipes` varchar(500) default NULL,
+  `subtime` varchar(6) default '0',
+  `suctime` varchar(6) default '0',
+  `input` varchar(1000) NOT NULL,
+  `output` varchar(1000) NOT NULL,
+  `samplein` varchar(1000) NOT NULL,
+  `sampleout` varchar(1000) NOT NULL,
+  `timelimit` varchar(10) NOT NULL,
+  `memorylimit` varchar(10) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=gb2312;
+
+-- ----------------------------
+-- Table structure for acm_result
+-- ----------------------------
+DROP TABLE IF EXISTS `acm_result`;
+CREATE TABLE `acm_result` (
+  `id` int(6) unsigned zerofill NOT NULL auto_increment,
+  `username` varchar(20) NOT NULL,
+  `acmtitle` varchar(30) NOT NULL,
+  `result` varchar(20) NOT NULL,
+  `time` varchar(10) default NULL,
+  `memory` varchar(10) default NULL,
+  `length` varchar(10) NOT NULL,
+  `language` varchar(10) NOT NULL,
+  `subtime` varchar(20) NOT NULL,
+  `acmid` varchar(10) NOT NULL,
+  `ernews` varchar(3000) default '其他逻辑成功',
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=131 DEFAULT CHARSET=gb2312;
+
+-- ----------------------------
+-- Table structure for acmpacount
+-- ----------------------------
+DROP TABLE IF EXISTS `acmpacount`;
+CREATE TABLE `acmpacount` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `apaperid` int(10) NOT NULL,
+  `ptitle` varchar(100) default NULL,
+  `userid` varchar(30) default NULL,
+  `accept` int(10) default '0',
+  `rank` int(10) default '0',
+  `sum` int(10) default '0',
+  `examtime` int(10) default '999999',
+  `alltime` int(10) default '0',
+  `allmemory` int(10) default '0',
+  `alength` int(10) default '0',
+  `subtime` varchar(45) default '',
+  `auplist` varchar(100) default '',
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=gb2312;
+
+-- ----------------------------
+-- Table structure for acmpaper
+-- ----------------------------
+DROP TABLE IF EXISTS `acmpaper`;
+CREATE TABLE `acmpaper` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `title` varchar(60) NOT NULL,
+  `state` varchar(10) default NULL,
+  `type` varchar(10) default NULL,
+  `stime` varchar(20) default NULL,
+  `alltime` varchar(20) default NULL,
+  `list` varchar(80) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=gb2312;
+
+-- ----------------------------
+-- Table structure for acmuserpaper
+-- ----------------------------
+DROP TABLE IF EXISTS `acmuserpaper`;
+CREATE TABLE `acmuserpaper` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `paperid` int(11) NOT NULL,
+  `userid` varchar(20) NOT NULL,
+  `acmid` int(6) NOT NULL,
+  `result` varchar(20) default NULL,
+  `antime` int(10) default NULL,
+  `alltime` int(10) default NULL,
+  `time` varchar(10) default NULL,
+  `memory` varchar(10) default NULL,
+  `length` varchar(10) default NULL,
+  `language` varchar(10) default NULL,
+  `subtime` varchar(20) default NULL,
+  `acmtitle` varchar(100) default NULL,
+  `ernews` varchar(3000) default '其他(逻辑)错误',
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=gb2312;
+
+-- ----------------------------
+-- Table structure for datas
+-- ----------------------------
+DROP TABLE IF EXISTS `datas`;
+CREATE TABLE `datas` (
+  `ID` int(10) unsigned NOT NULL auto_increment,
+  `name` varchar(100) NOT NULL,
+  `link` varchar(150) NOT NULL,
+  PRIMARY KEY  (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=gb2312;
+
+-- ----------------------------
+-- Table structure for papers
+-- ----------------------------
+DROP TABLE IF EXISTS `papers`;
+CREATE TABLE `papers` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `title` varchar(45) NOT NULL,
+  `type` varchar(10) NOT NULL,
+  `state` varchar(10) NOT NULL,
+  `alltime` varchar(20) NOT NULL,
+  `stime` varchar(20) NOT NULL,
+  `single` varchar(10) default NULL,
+  `more` varchar(10) default NULL,
+  `slist` varchar(200) default NULL,
+  `mlist` varchar(200) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=gb2312;
+
+-- ----------------------------
+-- Table structure for paresult
+-- ----------------------------
+DROP TABLE IF EXISTS `paresult`;
+CREATE TABLE `paresult` (
+  `id` int(11) NOT NULL auto_increment,
+  `paid` int(11) NOT NULL,
+  `patitle` varchar(100) NOT NULL,
+  `userid` varchar(45) NOT NULL,
+  `sscore` int(11) default '0',
+  `mscore` int(11) default '0',
+  `subtime` varchar(45) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=gb2312;
+
+-- ----------------------------
+-- Table structure for questions
+-- ----------------------------
+DROP TABLE IF EXISTS `questions`;
+CREATE TABLE `questions` (
+  `id` int(8) unsigned zerofill NOT NULL auto_increment,
+  `title` varchar(500) NOT NULL,
+  `type` varchar(6) NOT NULL,
+  `optionA` varchar(500) NOT NULL,
+  `optionB` varchar(500) NOT NULL,
+  `optionC` varchar(500) NOT NULL,
+  `optionD` varchar(500) NOT NULL,
+  `answer` varchar(10) NOT NULL,
+  `note` varchar(500) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=gb2312;
+
+-- ----------------------------
+-- Table structure for st_grade
+-- ----------------------------
+DROP TABLE IF EXISTS `st_grade`;
+CREATE TABLE `st_grade` (
+  `id` int(6) unsigned zerofill NOT NULL auto_increment,
+  `name` varchar(45) NOT NULL,
+  `submit` int(10) unsigned default NULL,
+  `succeed` int(10) unsigned default NULL,
+  `succeedlist` varchar(200) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=gb2312 ROW_FORMAT=DYNAMIC;
+
+-- ----------------------------
+-- Table structure for student
+-- ----------------------------
+DROP TABLE IF EXISTS `student`;
+CREATE TABLE `student` (
+  `id` int(6) unsigned zerofill NOT NULL auto_increment,
+  `authorid` varchar(25) NOT NULL,
+  `studentid` varchar(25) NOT NULL,
+  `name` varchar(25) NOT NULL,
+  `pwd` varchar(50) NOT NULL,
+  `question` varchar(200) NOT NULL,
+  `answer` varchar(100) NOT NULL,
+  `contact` varchar(100) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=gb2312;
+
+-- ----------------------------
+-- Table structure for tb_manager
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_manager`;
+CREATE TABLE `tb_manager` (
+  `id` int(3) unsigned zerofill NOT NULL auto_increment,
+  `name` varchar(45) NOT NULL,
+  `pwd` varchar(45) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=gb2312;
+
+-- ----------------------------
+-- Records 
+-- ----------------------------
+INSERT INTO `acm_question` VALUES ('0000000001', '求最值', '给定N个整数（1<=N<=100），求出这N个数中的最大值，最小值。\r\n', '练习题', '5\r\n4 6 7 3 1\r\n\r\n4\r\n4 3 5 1\r\n\r\n', '7 1\r\n5 1\r\n\r\n', '#include <cstdio>\r\n\r\n', '0', '0', '多组数据，第一行为一个整数N，第二行为N个不超过100的正整数，用空格隔开。', '对每组数据输出一行，包含两个整数，用一个空格隔开，分别表示N个数中的最大值和最小值', '5\r\n4 6 7 3 1\r\n\r\n4\r\n4 3 5 1\r\n', '7 1\r\n5 1\r\n', '1000', '12000');
+INSERT INTO `acm_question` VALUES ('0000000002', '梯形', '给出等腰梯形的上底、下底和高，要求计算该梯形的面积与周长。', '练习题', '2147483646 2147483647 2147483647', '4611686013058678800.00\r\n8589934587.00', '0', '5', '0', '输入数据只有一行，每行依次出现三个数U、D、H，分别表示等腰梯形的上底、下底和高。（ 0 < U < D, 0 < H）', '输出两行，第一行输出梯形的面积，第二行输出梯形的周长。（面积和周长均保留2位小数）', '2 8 4', '20.00\r\n20.00', '1000', '65536');
+INSERT INTO `acm_question` VALUES ('0000000003', 'Bad Hair Day', 'Some of Farmer John\'s N cows (1 ≤ N ≤ 80,000) are having a bad hair day! Since each cow is self-conscious about her messy hairstyle, FJ wants to count the number of other cows that can see the top of other cows\' heads.\r\n\r\nEach cow i has a specified height hi (1 ≤ hi ≤ 1,000,000,000) and is standing in a line of cows all facing east (to the right in our diagrams). Therefore, cow i can see the tops of the heads of cows in front of her (namely cows i+1, i+2, and so on), for as long as these cows are strictly shorter than cow i.\r\n\r\nConsider this example:\r\n\r\n        ==       ==   -   =         Cows facing right -->=   =   == - = = == = = = = =1 2 3 4 5 6 \r\nCow#1 can see the hairstyle of cows #2, 3, 4\r\nCow#2 can see no cow\'s hairstyle\r\nCow#3 can see the hairstyle of cow #4\r\nCow#4 can see no cow\'s hairstyle\r\nCow#5 can see the hairstyle of cow 6\r\nCow#6 can see no cows at all!\r\n\r\n\r\nLet ci denote the number of cows whose hairstyle is visible from cow i; please compute the sum of c1 through cN.For this example, the desired is answer 3 + 0 + 1 + 0 + 1 + 0 = 5.\r\n\r\n', '练习题', '31\r\n10\r\n3\r\n7\r\n4\r\n12\r\n2\r\n15\r\n10\r\n3\r\n7\r\n4\r\n12\r\n2\r\n1\r\n15\r\n10\r\n3\r\n7\r\n4\r\n12\r\n2\r\n15\r\n10\r\n3\r\n7\r\n4\r\n12\r\n2\r\n1', '52\r\n', '0', '2', '0', 'Line 1: The number of cows, N. \r\nLines 2..N+1: Line i+1 contains a single integer that is the height of cow i.', 'Line 1: A single integer that is the sum of c1 through cN.\r\n', '6\r\n10\r\n3\r\n7\r\n4\r\n12\r\n2\r\n', '5', '2000', '65536');
+INSERT INTO `acm_question` VALUES ('0000000004', 'Web Navigation', 'Standard web browsers contain features to move backward and forward among the pages recently visited. One way to implement these features is to use two stacks to keep track of the pages that can be reached by moving backward and forward. In this problem, you are asked to implement this. \r\nThe following commands need to be supported: \r\nBACK: Push the current page on the top of the forward stack. Pop the page from the top of the backward stack, making it the new current page. If the backward stack is empty, the command is ignored. \r\nFORWARD: Push the current page on the top of the backward stack. Pop the page from the top of the forward stack, making it the new current page. If the forward stack is empty, the command is ignored. \r\nVISIT : Push the current page on the top of the backward stack, and make the URL specified the new current page. The forward stack is emptied. \r\nQUIT: Quit the browser. \r\nAssume that the browser initially loads the web page at the URL http://www.acm.org/ \r\n', '练习题', 'BACK\r\nFORWARD\r\nVISIT http://acm.ashland.edu/\r\nVISIT http://acm.baylor.edu/acmicpc/\r\nVISIT http://acm.ashland.edu/\r\nBACK\r\nBACK\r\nBACK\r\nBACK\r\nFORWARD\r\nVISIT http://www.ibm.com/\r\nBACK\r\nBACK\r\nFORWARD\r\nFORWARD\r\nFORWARD\r\nFORWARD\r\nFORWARD\r\nFORWARD\r\nQUIT\r\n', 'Ignored\r\nIgnored\r\nhttp://acm.ashland.edu/\r\nhttp://acm.baylor.edu/acmicpc/\r\nhttp://acm.ashland.edu/\r\nhttp://acm.baylor.edu/acmicpc/\r\nhttp://acm.ashland.edu/\r\nhttp://www.acm.org/\r\nIgnored\r\nhttp://acm.ashland.edu/\r\nhttp://www.ibm.com/\r\nhttp://acm.ashland.edu/\r\nhttp://www.acm.org/\r\nhttp://acm.ashland.edu/\r\nhttp://www.ibm.com/\r\nIgnored\r\nIgnored\r\nIgnored\r\nIgnored\r\n', '0', '2', '0', 'Input is a sequence of commands. The command keywords BACK, FORWARD, VISIT, and QUIT are all in uppercase. URLs have no whitespace and have at most 70 characters. You may assume that no problem instance requires more than 100 elements in each stack at any time. The end of input is indicated by the QUIT command. \r\n', 'For each command other than QUIT, print the URL of the current page after the command is executed if the command is not ignored. Otherwise, print \"Ignored\". The output for each command should be printed on its own line. No output is produced for the QUIT command. \r\n', 'VISIT http://acm.ashland.edu/\r\nVISIT http://acm.baylor.edu/acmicpc/\r\nBACK\r\nBACK\r\nBACK\r\nFORWARD\r\nVISIT http://www.ibm.com/\r\nBACK\r\nBACK\r\nFORWARD\r\nFORWARD\r\nFORWARD\r\nQUIT\r\n', 'http://acm.ashland.edu/\r\nhttp://acm.baylor.edu/acmicpc/\r\nhttp://acm.ashland.edu/\r\nhttp://www.acm.org/\r\nIgnored\r\nhttp://acm.ashland.edu/\r\nhttp://www.ibm.com/\r\nhttp://acm.ashland.edu/\r\nhttp://www.acm.org/\r\nhttp://acm.ashland.edu/\r\nhttp://www.ibm.com/\r\nIgnored\r\n', '1000', '10000');
+INSERT INTO `acm_question` VALUES ('0000000005', 'Catch That Cow', 'Farmer John has been informed of the location of a fugitive cow and wants to catch her immediately. He starts at a point N (0 ≤ N ≤ 100,000) on a number line and the cow is at a point K (0 ≤ K ≤ 100,000) on the same number line. Farmer John has two modes of transportation: walking and teleporting.\r\n\r\n* Walking: FJ can move from any point X to the points X - 1 or X + 1 in a single minute\r\n* Teleporting: FJ can move from any point X to the point 2 × X in a single minute.\r\n\r\nIf the cow, unaware of its pursuit, does not move at all, how long does it take for Farmer John to retrieve it?\r\n\r\n', '练习题', '12 500', '10\r\n', '0', '1', '0', 'Line 1: Two space-separated integers: N and K\r\n', 'Line 1: The least amount of time, in minutes, it takes for Farmer John to catch the fugitive cow.\r\n', '5 17', '4', '2000', '65536');
+INSERT INTO `acm_question` VALUES ('0000000006', 'Counterfeit Dollar', 'Sally Jones has a dozen Voyageur silver dollars. However, only eleven of the coins are true silver dollars; one coin is counterfeit even though its color and size make it indistinguishable from the real silver dollars. The counterfeit coin has a different weight from the other coins but Sally does not know if it is heavier or lighter than the real coins. \r\nHappily, Sally has a friend who loans her a very accurate balance scale. The friend will permit Sally three weighings to find the counterfeit coin. For instance, if Sally weighs two coins against each other and the scales balance then she knows these two coins are true. Now if Sally weighs \r\none of the true coins against a third coin and the scales do not balance then Sally knows the third coin is counterfeit and she can tell whether it is light or heavy depending on whether the balance on which it is placed goes up or down, respectively. \r\nBy choosing her weighings carefully, Sally is able to ensure that she will find the counterfeit coin with exactly three weighings. ', '练习题', '3 \r\nABCD EFGH even \r\nABCI EFJK up \r\nABIJ EFGH even \r\nABCI EFJK up \r\nABIJ EFGH even \r\nABLD EFLH even \r\nACDZ EFGH even \r\nABCI EFJK up \r\nABIK EFGH even  ', 'K is the counterfeit coin and it is light.\r\nC is the counterfeit coin and it is heavy.\r\nJ is the counterfeit coin and it is light.\r\n', '0', '3', '5', 'The first line of input is an integer n (n > 0) specifying the number of cases to follow. Each case consists of three lines of input, one for each weighing. Sally has identified each of the coins with the letters A--L. Information on a weighing will be given by two strings of letters and then one of the words ``up\'\', ``down\'\', or ``even\'\'. The first string of letters will represent the coins on the left balance; the second string, the coins on the right balance. (Sally will always place the same number of coins on the right balance as on the left balance.) The word in the third position will tell whether the right side of the balance goes up, down, or remains even. \r\n', 'For each case, the output will identify the counterfeit coin by its letter and tell whether it is heavy or light. The solution will always be uniquely determined. ', '1 \r\nABCD EFGH even \r\nABCI EFJK up \r\nABIJ EFGH even ', 'K is the counterfeit coin and it is light. \r\n', '1000', '10000');
+INSERT INTO `acm_question` VALUES ('0000000007', 'Number Sequence', 'A single positive integer i is given. Write a program to find the digit located in the position i in the sequence of number groups S1S2...Sk. Each group Sk consists of a sequence of positive integer numbers ranging from 1 to k, written one after another. \r\nFor example, the first 80 digits of the sequence are as follows: \r\n11212312341234512345612345671234567812345678912345678910123456789101112345678910', '练习题', '7\r\n26161\r\n123131\r\n13141\r\n65745\r\n2147483647\r\n1\r\n25555', '55\r\n371\r\n100\r\n42\r\n32767\r\n1\r\n130\r\n', '0', '4', '4', 'The first line of the input file contains a single integer t (1 ≤ t ≤ 10), the number of test cases, followed by one line for each test case. The line for a test case contains the single integer i (1 ≤ i ≤ 2147483647)\r\n', 'There should be one output line per test case containing the digit located in the position i.\r\n', '2\r\n8\r\n3', '2\r\n2', '1000', '10000');
+INSERT INTO `acm_question` VALUES ('0000000008', 'To the Max', 'Given a two-dimensional array of positive and negative integers, a sub-rectangle is any contiguous sub-array of size 1*1 or greater located within the whole array. The sum of a rectangle is the sum of all the elements in that rectangle. In this problem the sub-rectangle with the largest sum is referred to as the maximal sub-rectangle. \r\nAs an example, the maximal sub-rectangle of the array: \r\n\r\n0 -2 -7 0 \r\n9 2 -6 2 \r\n-4 1 -4 1 \r\n-1 8 0 -2 \r\nis in the lower left corner: \r\n\r\n9 2 \r\n-4 1 \r\n-1 8 \r\nand has a sum of 15. \r\n\r\n', '练习题', '10\r\n0 -2 -7 0 9 2 -6 2 -4 1\r\n-4  1 -1 127 -127 127 0 8  0 -2\r\n0 -2 -7 0 9 2 -6 2 -4 1\r\n-40  199 -1 127 -127 127 0 8  0 -2\r\n-40  199 -1 127 -127 127 0 8  0 -2\r\n0 -2 -7 0 9 2 -6 2 -4 1\r\n-4  1 -1 127 -127 127 0 8  0 -2\r\n0 -2 -7 0 9 2 -6 2 -4 1\r\n0  127 -1 127 -127 127 0 8  0 -2\r\n0  -1271 -1 127 -127 127 0 8  0 -2', '1191', '0', '20', '11', 'The input consists of an N * N array of integers. The input begins with a single positive integer N on a line by itself, indicating the size of the square two-dimensional array. This is followed by N^2 integers separated by whitespace (spaces and newlines). These are the N^2 integers of the array, presented in row-major order. That is, all numbers in the first row, left to right, then all numbers in the second row, left to right, etc. N may be as large as 100. The numbers in the array will be in the range [-127,127].\r\n', 'Output the sum of the maximal sub-rectangle.\r\n', '4\r\n0 -2 -7 0 9 2 -6 2\r\n-4 1 -4  1 -1\r\n\r\n8  0 -2\r\n', '15', '1000', '10000');
+INSERT INTO `acm_question` VALUES ('0000000009', '两数求和', '计算a+b的结果，输出为和', '练习题', '1 2', '3', '计算a+b的结果，输出为和', '111', '25', '计算a+b的结果，输出为和', '计算a+b的结果，输出为和', '计算a+b的结果，输出为和', '计算a+b的结果，输出为和', '5000', '12000');
+INSERT INTO `acm_question` VALUES ('0000000012', '挑战小猩猩', '南京航空航天大学校园里绿树成荫，环境非常舒适，因此也引来一批动物朋友来此居住。\r\n童心未泯的小猩猩就经常带些碎面包什么的去广场喂鸽子和兔子，并和它们玩耍。一点也不像大学生，还是一副老不正经的样子，呵呵。\r\n随着鸽子和兔子数目的增多，小猩猩带的那点食物已经不够它们瓜分了。为了能让自己的好朋友吃的饱饱的，小猩猩决定统计一下有多少只鸽子和有多少只兔子，以便带来足够的食物。一、二、三、四、五...他开始数了。\r\n现在，他已经知道有这些鸽子和兔子一共有n个头和m只脚。请你帮他写个程序计算一下一共有多少只鸽子和兔子。', '练习题', '35 94\r\n1 3\r\n0 0\r\n', '23 12\r\nError\r\n', '44444', '17', '0', '输入包括多组数据。 \r\n每行包括2个数据：n、m(代表上面题目中提到的意思1≤n, m≤230)。 \r\nn、m都是整数。 \r\n输入以0 0作为结束。', '每组数据的输出都只有一行，分别是鸽子的数量和兔子数量。 \r\n如果输入的测试数据不能求得结果，那肯定是小猩猩这个马大哈数错了，就输出\"Error\"提示他。\r\n\r\n', '35 94\r\n1 3\r\n0 0\r\n\r\n\r\n', '23 12\r\nError\r\n\r\n\r\n', '1000', '65535');
+INSERT INTO `acm_question` VALUES ('0000000015', 'The Triangle', '73   88   1   02   7   4   44   5   2   6   5(Figure 1)  Figure 1 shows a number triangle. Write a program that calculates the highest sum of numbers passed on a route that starts at the top and ends somewhere on the base. Each step can go either diagonally down to the left or diagonally down to the right.', '练习题', '10  0  32 83  98 99 12   12 0 12 88  43 51 25 66 57  98 99 12 12 0 12  88 43 51 25 66 57 98  99 12 12 0 12 32 83 98  99 12 12 0 12 88 99 12 12  0 12 88 0 0 0 0 0 0 99', '581 ', '0', '0', '0', 'Your program is to read from standard input. The first line contains one integer N: the number of rows in the triangle. The following N lines describe the data of the triangle. The number of rows in the triangle is > 1 but <= 100. The numbers in the triangle, all integers, are between 0 and 99. ', 'Your program is to write to standard output. The highest sum is written as an integer. ', '5  7  3 8  8 1 0   2 7 4 4  4 5 2 6 5  ', '30', '1000', '10000');
+INSERT INTO `acm_question` VALUES ('0000000016', 'Self Numbers', 'In 1949 the Indian mathematician D.R. Kaprekar discovered a class of numbers called self-numbers. For any positive integer n, define d(n) to be n plus the sum of the digits of n. (The d stands for digitadition, a term coined by Kaprekar.) For example, d(75) = 75 + 7 + 5 = 87. Given any positive integer n as a starting point, you can construct the infinite increasing sequence of integers n, d(n), d(d(n)), d(d(d(n))), .... For example, if you start with 33, the next number is 33 + 3 + 3 = 39, the next is 39 + 3 + 9 = 51, the next is 51 + 5 + 1 = 57, and so you generate the sequence     33, 39, 51, 57, 69, 84, 96, 111, 114, 120, 123, 129, 141, ...   The number n is called a generator of d(n). In the sequence above, 33 is a generator of 39, 39 is a generator of 51, 51 is a generator of 57, and so on. Some numbers have more than one generator: for example, 101 has two generators, 91 and 100. A number with no generators is a self-number. There are thirteen self-numbers less than 100: 1, 3, 5, 7, 9, 20, 31, 42, 53, 64, 75, 86, and 97.   ', '练习题', '0', '1\r\n3\r\n5\r\n7\r\n9\r\n20\r\n31\r\n42\r\n53\r\n64\r\n75\r\n86\r\n97\r\n108\r\n110\r\n121\r\n132\r\n143\r\n154\r\n165\r\n176\r\n187\r\n198\r\n209\r\n211\r\n222\r\n233\r\n244\r\n255\r\n266\r\n277\r\n288\r\n299\r\n310\r\n312\r\n323\r\n334\r\n345\r\n356\r\n367\r\n378\r\n389\r\n400\r\n411\r\n413\r\n424\r\n435\r\n446\r\n457\r\n468\r\n479\r\n490\r\n501\r\n512\r\n514\r\n525\r\n536\r\n547\r\n558\r\n569\r\n580\r\n591\r\n602\r\n613\r\n615\r\n626\r\n637\r\n648\r\n659\r\n670\r\n681\r\n692\r\n703\r\n714\r\n716\r\n727\r\n738\r\n749\r\n760\r\n771\r\n782\r\n793\r\n804\r\n815\r\n817\r\n828\r\n839\r\n850\r\n861\r\n872\r\n883\r\n894\r\n905\r\n916\r\n918\r\n929\r\n940\r\n951\r\n962\r\n973\r\n984\r\n995\r\n1006\r\n1021\r\n1032\r\n1043\r\n1054\r\n1065\r\n1076\r\n1087\r\n1098\r\n1109\r\n1111\r\n1122\r\n1133\r\n1144\r\n1155\r\n1166\r\n1177\r\n1188\r\n1199\r\n1210\r\n1212\r\n1223\r\n1234\r\n1245\r\n1256\r\n1267\r\n1278\r\n1289\r\n1300\r\n1311\r\n1313\r\n1324\r\n1335\r\n1346\r\n1357\r\n1368\r\n1379\r\n1390\r\n1401\r\n1412\r\n1414\r\n1425\r\n1436\r\n1447\r\n1458\r\n1469\r\n1480\r\n1491\r\n1502\r\n1513\r\n1515\r\n1526\r\n1537\r\n1548\r\n1559\r\n1570\r\n1581\r\n1592\r\n1603\r\n1614\r\n1616\r\n1627\r\n1638\r\n1649\r\n1660\r\n1671\r\n1682\r\n1693\r\n1704\r\n1715\r\n1717\r\n1728\r\n1739\r\n1750\r\n1761\r\n1772\r\n1783\r\n1794\r\n1805\r\n1816\r\n1818\r\n1829\r\n1840\r\n1851\r\n1862\r\n1873\r\n1884\r\n1895\r\n1906\r\n1917\r\n1919\r\n1930\r\n1941\r\n1952\r\n1963\r\n1974\r\n1985\r\n1996\r\n2007\r\n2022\r\n2033\r\n2044\r\n2055\r\n2066\r\n2077\r\n2088\r\n2099\r\n2110\r\n2112\r\n2123\r\n2134\r\n2145\r\n2156\r\n2167\r\n2178\r\n2189\r\n2200\r\n2211\r\n2213\r\n2224\r\n2235\r\n2246\r\n2257\r\n2268\r\n2279\r\n2290\r\n2301\r\n2312\r\n2314\r\n2325\r\n2336\r\n2347\r\n2358\r\n2369\r\n2380\r\n2391\r\n2402\r\n2413\r\n2415\r\n2426\r\n2437\r\n2448\r\n2459\r\n2470\r\n2481\r\n2492\r\n2503\r\n2514\r\n2516\r\n2527\r\n2538\r\n2549\r\n2560\r\n2571\r\n2582\r\n2593\r\n2604\r\n2615\r\n2617\r\n2628\r\n2639\r\n2650\r\n2661\r\n2672\r\n2683\r\n2694\r\n2705\r\n2716\r\n2718\r\n2729\r\n2740\r\n2751\r\n2762\r\n2773\r\n2784\r\n2795\r\n2806\r\n2817\r\n2819\r\n2830\r\n2841\r\n2852\r\n2863\r\n2874\r\n2885\r\n2896\r\n2907\r\n2918\r\n2920\r\n2931\r\n2942\r\n2953\r\n2964\r\n2975\r\n2986\r\n2997\r\n3008\r\n3023\r\n3034\r\n3045\r\n3056\r\n3067\r\n3078\r\n3089\r\n3100\r\n3111\r\n3113\r\n3124\r\n3135\r\n3146\r\n3157\r\n3168\r\n3179\r\n3190\r\n3201\r\n3212\r\n3214\r\n3225\r\n3236\r\n3247\r\n3258\r\n3269\r\n3280\r\n3291\r\n3302\r\n3313\r\n3315\r\n3326\r\n3337\r\n3348\r\n3359\r\n3370\r\n3381\r\n3392\r\n3403\r\n3414\r\n3416\r\n3427\r\n3438\r\n3449\r\n3460\r\n3471\r\n3482\r\n3493\r\n3504\r\n3515\r\n3517\r\n3528\r\n3539\r\n3550\r\n3561\r\n3572\r\n3583\r\n3594\r\n3605\r\n3616\r\n3618\r\n3629\r\n3640\r\n3651\r\n3662\r\n3673\r\n3684\r\n3695\r\n3706\r\n3717\r\n3719\r\n3730\r\n3741\r\n3752\r\n3763\r\n3774\r\n3785\r\n3796\r\n3807\r\n3818\r\n3820\r\n3831\r\n3842\r\n3853\r\n3864\r\n3875\r\n3886\r\n3897\r\n3908\r\n3919\r\n3921\r\n3932\r\n3943\r\n3954\r\n3965\r\n3976\r\n3987\r\n3998\r\n4009\r\n4024\r\n4035\r\n4046\r\n4057\r\n4068\r\n4079\r\n4090\r\n4101\r\n4112\r\n4114\r\n4125\r\n4136\r\n4147\r\n4158\r\n4169\r\n4180\r\n4191\r\n4202\r\n4213\r\n4215\r\n4226\r\n4237\r\n4248\r\n4259\r\n4270\r\n4281\r\n4292\r\n4303\r\n4314\r\n4316\r\n4327\r\n4338\r\n4349\r\n4360\r\n4371\r\n4382\r\n4393\r\n4404\r\n4415\r\n4417\r\n4428\r\n4439\r\n4450\r\n4461\r\n4472\r\n4483\r\n4494\r\n4505\r\n4516\r\n4518\r\n4529\r\n4540\r\n4551\r\n4562\r\n4573\r\n4584\r\n4595\r\n4606\r\n4617\r\n4619\r\n4630\r\n4641\r\n4652\r\n4663\r\n4674\r\n4685\r\n4696\r\n4707\r\n4718\r\n4720\r\n4731\r\n4742\r\n4753\r\n4764\r\n4775\r\n4786\r\n4797\r\n4808\r\n4819\r\n4821\r\n4832\r\n4843\r\n4854\r\n4865\r\n4876\r\n4887\r\n4898\r\n4909\r\n4920\r\n4922\r\n4933\r\n4944\r\n4955\r\n4966\r\n4977\r\n4988\r\n4999\r\n5010\r\n5025\r\n5036\r\n5047\r\n5058\r\n5069\r\n5080\r\n5091\r\n5102\r\n5113\r\n5115\r\n5126\r\n5137\r\n5148\r\n5159\r\n5170\r\n5181\r\n5192\r\n5203\r\n5214\r\n5216\r\n5227\r\n5238\r\n5249\r\n5260\r\n5271\r\n5282\r\n5293\r\n5304\r\n5315\r\n5317\r\n5328\r\n5339\r\n5350\r\n5361\r\n5372\r\n5383\r\n5394\r\n5405\r\n5416\r\n5418\r\n5429\r\n5440\r\n5451\r\n5462\r\n5473\r\n5484\r\n5495\r\n5506\r\n5517\r\n5519\r\n5530\r\n5541\r\n5552\r\n5563\r\n5574\r\n5585\r\n5596\r\n5607\r\n5618\r\n5620\r\n5631\r\n5642\r\n5653\r\n5664\r\n5675\r\n5686\r\n5697\r\n5708\r\n5719\r\n5721\r\n5732\r\n5743\r\n5754\r\n5765\r\n5776\r\n5787\r\n5798\r\n5809\r\n5820\r\n5822\r\n5833\r\n5844\r\n5855\r\n5866\r\n5877\r\n5888\r\n5899\r\n5910\r\n5921\r\n5923\r\n5934\r\n5945\r\n5956\r\n5967\r\n5978\r\n5989\r\n6000\r\n6011\r\n6026\r\n6037\r\n6048\r\n6059\r\n6070\r\n6081\r\n6092\r\n6103\r\n6114\r\n6116\r\n6127\r\n6138\r\n6149\r\n6160\r\n6171\r\n6182\r\n6193\r\n6204\r\n6215\r\n6217\r\n6228\r\n6239\r\n6250\r\n6261\r\n6272\r\n6283\r\n6294\r\n6305\r\n6316\r\n6318\r\n6329\r\n6340\r\n6351\r\n6362\r\n6373\r\n6384\r\n6395\r\n6406\r\n6417\r\n6419\r\n6430\r\n6441\r\n6452\r\n6463\r\n6474\r\n6485\r\n6496\r\n6507\r\n6518\r\n6520\r\n6531\r\n6542\r\n6553\r\n6564\r\n6575\r\n6586\r\n6597\r\n6608\r\n6619\r\n6621\r\n6632\r\n6643\r\n6654\r\n6665\r\n6676\r\n6687\r\n6698\r\n6709\r\n6720\r\n6722\r\n6733\r\n6744\r\n6755\r\n6766\r\n6777\r\n6788\r\n6799\r\n6810\r\n6821\r\n6823\r\n6834\r\n6845\r\n6856\r\n6867\r\n6878\r\n6889\r\n6900\r\n6911\r\n6922\r\n6924\r\n6935\r\n6946\r\n6957\r\n6968\r\n6979\r\n6990\r\n7001\r\n7012\r\n7027\r\n7038\r\n7049\r\n7060\r\n7071\r\n7082\r\n7093\r\n7104\r\n7115\r\n7117\r\n7128\r\n7139\r\n7150\r\n7161\r\n7172\r\n7183\r\n7194\r\n7205\r\n7216\r\n7218\r\n7229\r\n7240\r\n7251\r\n7262\r\n7273\r\n7284\r\n7295\r\n7306\r\n7317\r\n7319\r\n7330\r\n7341\r\n7352\r\n7363\r\n7374\r\n7385\r\n7396\r\n7407\r\n7418\r\n7420\r\n7431\r\n7442\r\n7453\r\n7464\r\n7475\r\n7486\r\n7497\r\n7508\r\n7519\r\n7521\r\n7532\r\n7543\r\n7554\r\n7565\r\n7576\r\n7587\r\n7598\r\n7609\r\n7620\r\n7622\r\n7633\r\n7644\r\n7655\r\n7666\r\n7677\r\n7688\r\n7699\r\n7710\r\n7721\r\n7723\r\n7734\r\n7745\r\n7756\r\n7767\r\n7778\r\n7789\r\n7800\r\n7811\r\n7822\r\n7824\r\n7835\r\n7846\r\n7857\r\n7868\r\n7879\r\n7890\r\n7901\r\n7912\r\n7923\r\n7925\r\n7936\r\n7947\r\n7958\r\n7969\r\n7980\r\n7991\r\n8002\r\n8013\r\n8028\r\n8039\r\n8050\r\n8061\r\n8072\r\n8083\r\n8094\r\n8105\r\n8116\r\n8118\r\n8129\r\n8140\r\n8151\r\n8162\r\n8173\r\n8184\r\n8195\r\n8206\r\n8217\r\n8219\r\n8230\r\n8241\r\n8252\r\n8263\r\n8274\r\n8285\r\n8296\r\n8307\r\n8318\r\n8320\r\n8331\r\n8342\r\n8353\r\n8364\r\n8375\r\n8386\r\n8397\r\n8408\r\n8419\r\n8421\r\n8432\r\n8443\r\n8454\r\n8465\r\n8476\r\n8487\r\n8498\r\n8509\r\n8520\r\n8522\r\n8533\r\n8544\r\n8555\r\n8566\r\n8577\r\n8588\r\n8599\r\n8610\r\n8621\r\n8623\r\n8634\r\n8645\r\n8656\r\n8667\r\n8678\r\n8689\r\n8700\r\n8711\r\n8722\r\n8724\r\n8735\r\n8746\r\n8757\r\n8768\r\n8779\r\n8790\r\n8801\r\n8812\r\n8823\r\n8825\r\n8836\r\n8847\r\n8858\r\n8869\r\n8880\r\n8891\r\n8902\r\n8913\r\n8924\r\n8926\r\n8937\r\n8948\r\n8959\r\n8970\r\n8981\r\n8992\r\n9003\r\n9014\r\n9029\r\n9040\r\n9051\r\n9062\r\n9073\r\n9084\r\n9095\r\n9106\r\n9117\r\n9119\r\n9130\r\n9141\r\n9152\r\n9163\r\n9174\r\n9185\r\n9196\r\n9207\r\n9218\r\n9220\r\n9231\r\n9242\r\n9253\r\n9264\r\n9275\r\n9286\r\n9297\r\n9308\r\n9319\r\n9321\r\n9332\r\n9343\r\n9354\r\n9365\r\n9376\r\n9387\r\n9398\r\n9409\r\n9420\r\n9422\r\n9433\r\n9444\r\n9455\r\n9466\r\n9477\r\n9488\r\n9499\r\n9510\r\n9521\r\n9523\r\n9534\r\n9545\r\n9556\r\n9567\r\n9578\r\n9589\r\n9600\r\n9611\r\n9622\r\n9624\r\n9635\r\n9646\r\n9657\r\n9668\r\n9679\r\n9690\r\n9701\r\n9712\r\n9723\r\n9725\r\n9736\r\n9747\r\n9758\r\n9769\r\n9780\r\n9791\r\n9802\r\n9813\r\n9824\r\n9826\r\n9837\r\n9848\r\n9859\r\n9870\r\n9881\r\n9892\r\n9903\r\n9914\r\n9925\r\n9927\r\n9938\r\n9949\r\n9960\r\n9971\r\n9982\r\n9993\r\n', '0', '16', '8', 'No input for this problem.', 'Write a program to output all positive self-numbers less than 10000 in increasing order, one per line. ', '0', '1  3  5  7  9  20  31  42  53  64   |   |       <-- a lot more numbers   |  9903  9914  9925  9927  9938  9949  9960  9971  9982  9993  ', '1000', '10000');
+INSERT INTO `acm_question` VALUES ('0000000017', 'DRUNK JAILER', 'A certain prison contains a long hall of n cells, each right next to each other. Each cell has a prisoner in it, and each cell is locked.   One night, the jailer gets bored and decides to play a game. For round 1 of the game, he takes a drink of whiskey,and then runs down the hall unlocking each cell. For round 2, he takes a drink of whiskey, and then runs down the   hall locking every other cell (cells 2, 4, 6, ?). For round 3, he takes a drink of whiskey, and then runs down the hall. He visits every third cell (cells 3, 6, 9, ?). If the cell is locked, he unlocks it; if it is unlocked, he locks it. He   repeats this for n rounds, takes a final drink, and passes out.   Some number of prisoners, possibly zero, realizes that their cells are unlocked and the jailer is incapacitated. They immediately escape.   Given the number of cells, determine how many prisoners escape jail.  ', '练习题', '15  100  100  13  25  5  67  100  100  13  25  5  67  5  67  100  100  13', '10  10  3  5  2  8  10  10  3  5  2  8  2  8  10  ', '0', '1', '0', 'The first line of input contains a single positive integer. This is the number of lines that follow. Each of the following lines contains a single integer between 5 and 100, inclusive, which is the number of cells n.', 'For each line, you must print out the number of prisoners that escape when the prison has n cells.  ', '2  5  100  ', '2  10', '1000', '10000');
+INSERT INTO `acm_question` VALUES ('0000000018', 'Which is Next(pascal)', 'Every computer science student knows binary trees. Here is one of many possible definitions of binary trees. Binary trees are defined inductively. A binary tree t is either an external node (leaf) ○ or an ordered pair t = (t1, t2) representing an internal node ● with two subtrees attached, left subtree t1 and right subtree t2. Under this definition the number of nodes in any binary tree is odd. Given an odd integer n let B(n) denote the set of all binary trees with n nodes, both internal and external. For instance B(1) consists of only one tree ○, B(3) = {(○,○ )} and B(5) = {(○, (○,○ )), ((○,○ ),○ )}. The trees of B(5) are depicted in the figure below. \r\n\r\n\r\n\r\nDenote by |t| the number of nodes in a tree t. Given a tree t we define its unique integer identifier N (t) as follows: \r\n\r\nN (○) = 0 \r\nN (t1, t2) = 2|t1|+|t2| + 2|t2| * N(t1) +N (t2) \r\nFor instance, N (○,○) = 22 + 21 * 0 + 0 = 4, N (○, (○,○ )) = 24 + 23 * 0 + 4 = 20, \r\nN ((○,○ ),○ ) = 24 + 21 * 4 + 0 = 24. \r\n\r\nConsider the following linear order on all binary trees: \r\n\r\n1) ○ < = t \r\n2) (t1, t2) < = (u1, u2) when t1 < u1, or t1 = u1 and t2 < = u2 \r\n\r\nIn this order a single leaf is the smallest tree and given two nonleaf trees, the smaller one is that with the smaller left tree, if the left subtrees are different, and that with the smaller right subtree, otherwise. Hence for instance (○, (○,○ )) < ((○,○ ),○ ), since we have ○ < (○,○ ). Assume now that the trees in B(n) were sorted using the relation < =. Then, for each tree t in B(n) we define the successor of t as the tree that immediately follows t in B(n). If t is the largest one in B(n) then the successor of t is the smallest tree in set B(n). For instance, the successor of (○,○ ) in B(3) is the same tree (○, ○) and the successor of (○, (○,○ )) in B(5) is ((○,○ ),○ ). Given the integer identifier of some tree t can you give the identifier of the successor of t in B(|t|)? \r\n\r\nTask \r\nWrite a program that: \r\n\r\nreads the identifier of some binary tree t, \r\ncomputes the identifier of the successor of t in B(|t|), \r\nwrites the result. \r\n\r\n', '练习题', '678', '682', 'http://acm.pku.edu.cn/JudgeOnline/problem?id=1767\r\nCentral Europe 2003', '4', '3', 'The first and only line of the input contains one integer n (0 <= n < = 230) - the identifier of some binary tree ', 'The first and only line of the output should contain one integer s - the identifier of the successor of t in B(|t|). ', '20\r\n', '24', '1000', '10000');
+INSERT INTO `acm_question` VALUES ('0000000019', 'Biorhythms(c,gcc)', 'Some people believe that there are three cycles in a person@s life that start the day he or she is born. These three cycles are the physical, emotional, and intellectual cycles, and they have periods of lengths 23, 28, and 33 days, respectively. There is one peak in each period of a cycle. At the peak of a cycle, a person performs at his or her best in the corresponding field (physical, emotional or mental). For example, if it is the mental curve, thought processes will be sharper and concentration will be easier. \r\nSince the three cycles have different periods, the peaks of the three cycles generally occur at different times. We would like to determine when a triple peak occurs (the peaks of all three cycles occur in the same day) for any person. For each cycle, you will be given the number of days from the beginning of the current year at which one of its peaks (not necessarily the first) occurs. You will also be given a date expressed as the number of days from the beginning of the current year. You task is to determine the number of days from the given date to the next triple peak. The given date is not counted. For example, if the given date is 10 and the next triple peak occurs on day 12, the answer is 2, not 3. If a triple peak occurs on the given date, you should give the number of days to the next occurrence of a triple peak.', '竞赛题', '0 0 0 0\r\n0 0 0 100\r\n5 20 34 325\r\n4 5 6 7\r\n283 102 23 320\r\n203 301 203 40\r\n-1 -1 -1 -1\r\n', 'Case 1: the next triple peak occurs in 21252 days.\r\nCase 2: the next triple peak occurs in 21152 days.\r\nCase 3: the next triple peak occurs in 19575 days.\r\nCase 4: the next triple peak occurs in 16994 days.\r\nCase 5: the next triple peak occurs in 8910 days.\r\nCase 6: the next triple peak occurs in 10789 days.', 'http://acm.pku.edu.cn/JudgeOnline/problem?id=1006\r\nEast Central North America 1999', '7', '2', 'You will be given a number of cases. The input for each case consists of one line of four integers p, e, i, and d. The values p, e, and i are the number of days from the beginning of the current year at which the physical, emotional, and intellectual cycles peak, respectively. The value d is the given date and may be smaller than any of p, e, or i. All values are non-negative and at most 365, and you may assume that a triple peak will occur within 21252 days of the given date. The end of input is indicated by a line in which p = e = i = d = -1. \r\n', 'For each test case, print the case number followed by a message indicating the number of days to the next triple peak, in the form: \r\n\r\nCase 1: the next triple peak occurs in 1234 days. \r\n\r\nUse the plural form ``days@@ even if the answer is 1. ', '0 0 0 0\r\n0 0 0 100\r\n5 20 34 325\r\n4 5 6 7\r\n283 102 23 320\r\n203 301 203 40\r\n-1 -1 -1 -1\r\n', 'Case 1: the next triple peak occurs in 21252 days.\r\nCase 2: the next triple peak occurs in 21152 days.\r\nCase 3: the next triple peak occurs in 19575 days.\r\nCase 4: the next triple peak occurs in 16994 days.\r\nCase 5: the next triple peak occurs in 8910 days.\r\nCase 6: the next triple peak occurs in 10789 days.', '1000', '10000');
+INSERT INTO `acm_result` VALUES ('000001', 'wints', '两数求和', 'Accepted', '202', '11190272', '356B', 'java', '2010-03-28 13:45:53', '9', 'null');
+INSERT INTO `acm_result` VALUES ('000002', 'wints', '两数求和', 'Accepted', '187', '11190272', '356B', 'java', '2010-03-28 13:51:07', '9', 'null');
+INSERT INTO `acm_result` VALUES ('000003', 'wints', '两数求和', 'Accepted', '156', '11186176', '356B', 'java', '2010-03-28 13:56:40', '9', 'null');
+INSERT INTO `acm_result` VALUES ('000004', 'wints', '两数求和', 'Memory Limit Exceed', 'null', 'null', '352B', 'java', '2010-03-28 13:57:12', '9', 'null');
+INSERT INTO `acm_result` VALUES ('000005', 'wints', '两数求和', 'Time Limit Exceed', 'null', 'null', '354B', 'java', '2010-03-28 13:57:31', '9', 'null');
+INSERT INTO `acm_result` VALUES ('000006', 'wints', '挑战小猩猩', 'null', 'null', 'null', '4B', 'c++', '2010-04-12 16:28:46', '12', 'null');
+INSERT INTO `acm_result` VALUES ('000007', 'wints', '两数求和', 'null', 'null', 'null', '7B', 'c++', '2010-05-01 19:13:43', '9', 'null');
+INSERT INTO `acm_result` VALUES ('000008', 'wints', '两数求和', 'null', 'null', 'null', '15B', 'c++', '2010-05-23 23:49:07', '9', 'null');
+INSERT INTO `acm_result` VALUES ('000009', 'wints', '挑战小猩猩', 'Compile Error', 'null', 'null', '16B', 'c++', '2010-05-25 13:02:32', '12', 'null');
+INSERT INTO `acm_result` VALUES ('000010', 'wints', '两数求和', 'Compile Error', 'null', 'null', '7B', 'c++', '2010-06-06 10:33:26', '9', 'null');
+INSERT INTO `acm_result` VALUES ('000011', 'wints', '两数求和', 'Compile Error', 'null', 'null', '4B', 'c++', '2010-06-13 10:21:19', '9', 'null');
+INSERT INTO `acm_result` VALUES ('000012', 'wints', '两数求和', 'Compile Error', 'null', 'null', '13B', 'c++', '2010-06-14 14:06:06', '9', 'null');
+INSERT INTO `acm_result` VALUES ('000013', 'wints', '两数求和', 'Compile Error', 'null', 'null', '134B', 'c++', '2010-06-21 09:20:54', '9', 'null');
+INSERT INTO `acm_result` VALUES ('000014', 'wints', '两数求和', 'Compile Error', 'null', 'null', '19B', 'c++', '2010-06-22 09:14:56', '9', 'null');
+INSERT INTO `acm_result` VALUES ('000015', 'maqing', 'Bad Hair Day', 'Compile Error', 'null', 'null', '23', 'c++', '2010-06-22 09:24:07', '3', 'null');
+INSERT INTO `acm_result` VALUES ('000016', 'maqing', 'Bad Hair Day', 'Compile Error', 'null', 'null', '23', 'c++', '2010-06-22 09:28:17', '3', 'null');
+INSERT INTO `acm_result` VALUES ('000017', 'wushi', 'To the Max', 'Compile Error', 'null', 'null', '21', 'c++', '2010-06-22 15:28:27', '8', 'null');
+INSERT INTO `acm_result` VALUES ('000018', 'wints', '两数求和', 'Compile Error', 'null', 'null', '23', 'c++', '2010-06-22 17:32:56', '9', 'null');
+INSERT INTO `acm_result` VALUES ('000019', 'wints', '两数求和', 'Compile Error', 'null', 'null', '16', 'c++', '2010-06-22 17:34:43', '9', 'null');
+INSERT INTO `acm_result` VALUES ('000020', 'wints', '两数求和', 'Compile Error', 'null', 'null', '32', 'java', '2010-06-22 17:41:50', '9', 'nullnullnullnullnull');
+INSERT INTO `acm_result` VALUES ('000021', 'wints', '两数求和', 'Compile Error', 'null', 'null', '22', 'java', '2010-06-22 17:50:58', '9', 'nullwintstest.java:1: 进行语法解析时已到达文件结尾wqqqqqqqqqqqqqqqqqqqqq\Z');
+INSERT INTO `acm_result` VALUES ('000022', 'wints', '两数求和', 'Compile Error', 'null', 'null', '24', 'c++', '2010-06-22 17:53:41', '9', '');
+INSERT INTO `acm_result` VALUES ('000023', 'wints', '两数求和', 'Compile Error', 'null', 'null', '29', 'java', '2010-06-22 17:54:10', '9', 'wintstest.java:1: 进行语法解析时已到达文件结尾wwwwwwwwwwwwwwwwwwwwwwwwwwwww\Z');
+INSERT INTO `acm_result` VALUES ('000024', 'wints', '两数求和', 'Compile Error', 'null', 'null', '134', 'c++', '2010-06-22 17:55:35', '9', '');
+INSERT INTO `acm_result` VALUES ('000025', 'wints', '两数求和', 'Compile Error', 'null', 'null', '134', 'c++', '2010-06-22 20:01:12', '9', '');
+INSERT INTO `acm_result` VALUES ('000026', 'wints', '两数求和', 'Compile Error', 'null', 'null', '6', 'java', '2010-06-22 20:05:15', '9', 'wintstest.java:1: 进行语法解析时已到达文件结尾gaefea\Z');
+INSERT INTO `acm_result` VALUES ('000027', 'wints', '两数求和', 'Compile Error', 'null', 'null', '5', 'c++', '2010-06-22 20:05:30', '9', '');
+INSERT INTO `acm_result` VALUES ('000028', 'wints', '两数求和', 'Compile Error', 'null', 'null', '5', 'g++', '2010-06-22 20:05:43', '9', '系统找不到指定的路径。');
+INSERT INTO `acm_result` VALUES ('000029', 'wushi', '两数求和', 'null', 'null', 'null', '134', 'c++', '2010-06-22 20:10:22', '9', 'null');
+INSERT INTO `acm_result` VALUES ('000030', 'wushi', '两数求和', 'Compile Error', 'null', 'null', '134', 'c++', '2010-06-22 20:12:45', '9', '');
+INSERT INTO `acm_result` VALUES ('000031', 'wushi', '两数求和', 'Compile Error', 'null', 'null', '134', 'c++', '2010-06-22 20:22:00', '9', '');
+INSERT INTO `acm_result` VALUES ('000032', 'wints', '两数求和', 'Compile Error', 'null', 'null', '134', 'c++', '2010-06-22 20:25:04', '9', '');
+INSERT INTO `acm_result` VALUES ('000033', 'wints', '两数求和', 'Compile Error', 'null', 'null', '134', 'c++', '2010-06-22 20:41:43', '9', '');
+INSERT INTO `acm_result` VALUES ('000034', 'wints', '两数求和', 'Compile Error', 'null', 'null', '3', 'c++', '2010-06-22 21:42:58', '9', '');
+INSERT INTO `acm_result` VALUES ('000035', 'wints', '两数求和', 'Compile Error', 'null', 'null', '134', 'c++', '2010-06-22 21:43:16', '9', '');
+INSERT INTO `acm_result` VALUES ('000036', 'wints', '两数求和', 'Compile Error', 'null', 'null', '354', 'java', '2010-06-22 21:50:19', '9', 'wintstest.java:3: 类 test 是公共的，应在名为 test.java 的文件中声明public class test{                   ^1 错误');
+INSERT INTO `acm_result` VALUES ('000037', 'wints', '两数求和', 'Compile Error', 'null', 'null', '359', 'c++', '2010-06-22 21:51:22', '9', '');
+INSERT INTO `acm_result` VALUES ('000038', 'wints', '两数求和', 'Compile Error', 'null', 'null', '134', 'c++', '2010-06-22 23:07:48', '9', '');
+INSERT INTO `acm_result` VALUES ('000039', 'wints', '两数求和', 'Compile Error', 'null', 'null', '134', 'c++', '2010-06-22 23:11:20', '9', '');
+INSERT INTO `acm_result` VALUES ('000040', 'wints', '两数求和', 'Compile Error', 'null', 'null', '134', 'c++', '2010-06-22 23:13:03', '9', '');
+INSERT INTO `acm_result` VALUES ('000041', 'wints', '两数求和', 'Compile Error', 'null', 'null', '134', 'c++', '2010-06-22 23:16:14', '9', '');
+INSERT INTO `acm_result` VALUES ('000042', 'wints', '两数求和', 'Compile Error', 'null', 'null', '134', 'c++', '2010-06-22 23:17:06', '9', '');
+INSERT INTO `acm_result` VALUES ('000043', 'wints', '两数求和', 'Compile Error', 'null', 'null', '134', 'c++', '2010-06-22 23:17:39', '9', '');
+INSERT INTO `acm_result` VALUES ('000044', 'wints', '两数求和', 'Compile Error', 'null', 'null', '313', 'java', '2010-06-23 07:42:35', '9', 'wintstest.java:3: 类 test 是公共的，应在名为 test.java 的文件中声明public class test{                   ^1 错误');
+INSERT INTO `acm_result` VALUES ('000045', 'wints', '两数求和', 'Time Limit Exceed', 'null', 'null', '318', 'java', '2010-06-23 07:44:12', '9', '');
+INSERT INTO `acm_result` VALUES ('000046', 'wints', '两数求和', 'Accepted', '15', '888832', '132', 'c++', '2010-06-23 07:46:19', '9', 'null');
+INSERT INTO `acm_result` VALUES ('000047', 'wints', '两数求和', 'Accepted', '30', '888832', '132', 'c++', '2010-06-23 09:06:59', '9', 'null');
+INSERT INTO `acm_result` VALUES ('000048', 'wints', '两数求和', 'Time Limit Exceed', 'null', 'null', '318', 'java', '2010-06-23 09:27:52', '9', '');
+INSERT INTO `acm_result` VALUES ('000049', 'wints', 'To the Max', 'Compile Error', 'null', 'null', '15', 'c++', '2010-06-23 09:43:59', '8', 'wintstest.cppwintstest.cpp(2) : fatal error C1004: 发现意外的文件尾');
+INSERT INTO `acm_result` VALUES ('000050', 'wushi', 'Number Sequence', 'Accepted', '30', '888832', '582', 'c++', '2010-06-23 09:53:21', '7', 'null');
+INSERT INTO `acm_result` VALUES ('000051', 'maqing', 'Number Sequence', 'Accepted', '31', '888832', '582', 'c++', '2010-06-23 10:04:34', '7', '编译成功');
+INSERT INTO `acm_result` VALUES ('000052', 'maqing', 'To the Max', 'Compile Error', 'null', 'null', '315', 'java', '2010-06-23 10:05:09', '8', 'maqingtest.java:3: 类 test 是公共的，应在名为 test.java 的文件中声明/npublic class test{            /n       ^/n1 错误/n');
+INSERT INTO `acm_result` VALUES ('000053', 'wints', '两数求和', 'Time Limit Exceed', 'null', 'null', '320', 'java', '2010-06-23 10:10:34', '9', '编译成功');
+INSERT INTO `acm_result` VALUES ('000054', 'wints', 'To the Max', 'Compile Error', 'null', 'null', '40', 'c++', '2010-06-23 10:20:16', '8', 'wintstest.cpp<br>wintstest.cpp(2) : fatal error C1004: 发现意外的文件尾<br>');
+INSERT INTO `acm_result` VALUES ('000055', 'wints', 'To the Max', 'Accepted', '46', '884736', '1126', 'c++', '2010-06-23 11:16:08', '8', '编译成功');
+INSERT INTO `acm_result` VALUES ('000056', 'wints', '两数求和', 'Accepted', '296', '11624448', '313', 'java', '2010-06-23 11:17:56', '9', '编译成功');
+INSERT INTO `acm_result` VALUES ('000057', 'wints', '两数求和', 'Accepted', '234', '11603968', '315', 'java', '2010-06-23 11:30:00', '9', '编译成功');
+INSERT INTO `acm_result` VALUES ('000058', 'wints', '两数求和', 'Compile Error', 'null', 'null', '356', 'java', '2010-06-23 16:18:54', '9', 'wintstest.java:3: 类 test 是公共的，应在名为 test.java 的文件中声明public class test{                   ^1 错误');
+INSERT INTO `acm_result` VALUES ('000059', 'wints', '两数求和', 'Compile Error', 'null', 'null', '356', 'java', '2010-06-23 16:21:52', '9', 'wintstest.java:3: 类 test 是公共的，应在名为 test.java 的文件中声明public class test{                   ^1 错误');
+INSERT INTO `acm_result` VALUES ('000060', 'wints', '两数求和', 'Compile Error', 'null', 'null', '356', 'java', '2010-06-23 16:23:19', '9', 'wintstest.java:3: 类 test 是公共的，应在名为 test.java 的文件中声明public class test{                   ^1 错误');
+INSERT INTO `acm_result` VALUES ('000061', 'wints', '两数求和', 'Compile Error', 'null', 'null', '356', 'java', '2010-06-23 16:24:43', '9', 'wintstest.java:3: 类 test 是公共的，应在名为 test.java 的文件中声明public class test{                   ^1 错误');
+INSERT INTO `acm_result` VALUES ('000062', 'wints', '两数求和', 'Compile Error', 'null', 'null', '356', 'java', '2010-06-23 16:25:12', '9', 'wintstest.java:3: 类 test 是公共的，应在名为 test.java 的文件中声明public class test{                   ^1 错误');
+INSERT INTO `acm_result` VALUES ('000063', 'wints', '两数求和', 'Compile Error', 'null', 'null', '356', 'java', '2010-06-23 16:30:39', '9', 'wintstest.java:3: 类 test 是公共的，应在名为 test.java 的文件中声明public class test{                   ^1 错误');
+INSERT INTO `acm_result` VALUES ('000064', 'wints', '????', 'Accepted', '124', '10395648', '356', 'java', '2010-06-23 16:37:00', '9', '????');
+INSERT INTO `acm_result` VALUES ('000065', 'wints', '????', 'Accepted', '108', '10375168', '356', 'java', '2010-06-23 16:37:38', '9', '????');
+INSERT INTO `acm_result` VALUES ('000066', 'wints', '????', 'Accepted', '124', '10338304', '356', 'java', '2010-06-23 16:58:12', '9', '????');
+INSERT INTO `acm_result` VALUES ('000067', 'wints', '????', 'Accepted', '30', '876544', '134', 'c++', '2010-06-23 16:58:54', '9', '????');
+INSERT INTO `acm_result` VALUES ('000068', 'wints', '????', 'Accepted', '30', '1110016', '134', 'g++', '2010-06-23 16:59:05', '9', '????');
+INSERT INTO `acm_result` VALUES ('000069', 'wints', '????', 'Time Limit Exceed', 'null', 'null', '158', 'g++', '2010-06-23 16:59:49', '9', '????');
+INSERT INTO `acm_result` VALUES ('000070', 'wints', '????', 'Time Limit Exceed', 'null', 'null', '158', 'g++', '2010-06-23 17:00:08', '9', '????');
+INSERT INTO `acm_result` VALUES ('000071', 'wints', '????', 'Accepted', '15', '876544', '134', 'c++', '2010-06-23 17:00:23', '9', '????');
+INSERT INTO `acm_result` VALUES ('000072', 'wints', '????', 'Accepted', '30', '876544', '134', 'c++', '2010-06-23 17:01:25', '9', '????');
+INSERT INTO `acm_result` VALUES ('000073', 'wints', 'Self Numbers', 'Wrong Answer', 'null', 'null', '479', 'c++', '2010-06-23 17:12:13', '16', '编译成功');
+INSERT INTO `acm_result` VALUES ('000074', 'wints', 'Self Numbers', 'Wrong Answer', 'null', 'null', '479', 'g++', '2010-06-23 17:12:54', '16', '编译成功');
+INSERT INTO `acm_result` VALUES ('000075', 'wints', 'Self Numbers', 'Accepted', '30', '819200', '479', 'c++', '2010-06-23 17:19:28', '16', '编译成功');
+INSERT INTO `acm_result` VALUES ('000076', 'wints', 'Self Numbers', 'Compile Error', 'null', 'null', '481', 'c++', '2010-06-23 17:19:41', '16', 'wintstest.cpp<br>wintstest.cpp(33) : error C3861: @printf@: identifier not found<br>');
+INSERT INTO `acm_result` VALUES ('000077', 'wints', 'Self Numbers', 'Accepted', '15', '819200', '475', 'c++', '2010-06-23 17:20:39', '16', '编译成功');
+INSERT INTO `acm_result` VALUES ('000078', 'wints', 'Self Numbers', 'Compile Error', 'null', 'null', '477', 'c++', '2010-06-23 17:22:58', '16', 'wintstest.cpp<br>wintstest.cpp(31) : error C3861: @printf@: identifier not found<br>');
+INSERT INTO `acm_result` VALUES ('000079', 'wints', 'Self Numbers', 'Compile Error', 'null', 'null', '479', 'c++', '2010-06-23 17:23:37', '16', 'wintstest.cpp<br>wintstest.cpp(7) : error C2065: @a@ : undeclared identifier<br>wintstest.cpp(31) : error C3861: @printf@: identifier not found<br>');
+INSERT INTO `acm_result` VALUES ('000080', 'wints', 'Self Numbers', 'Runtime Error', 'null', 'null', '496', 'c++', '2010-06-23 17:24:12', '16', 'stack overflow:The thread used up its stack.<br>');
+INSERT INTO `acm_result` VALUES ('000081', 'wints', 'Self Numbers', 'Compile Error', 'null', 'null', '479', 'c++', '2010-06-23 17:25:11', '16', 'wintstest.cpp<br>wintstest.cpp(7) : error C2440: @=@ : cannot convert from @int@ to @int [10]@<br>        There are no conversions to array types, although there are conversions to references or pointers to arrays<br>wintstest.cpp(25) : error C2440: @=@ : cannot convert from @int@ to @int [10]@<br>        There are no conversions to array types, although there are conversions to references or pointers to arrays<br>');
+INSERT INTO `acm_result` VALUES ('000082', 'wints', 'Self Numbers', 'Accepted', '15', '819200', '475', 'c++', '2010-06-23 17:25:25', '16', '编译成功');
+INSERT INTO `acm_result` VALUES ('000083', 'wints', 'Catch That Cow', 'Compile Error', 'null', 'null', '0', 'c++', '2010-06-23 20:13:23', '5', 'wintstest.cpp<br>Microsoft (R) Incremental Linker Version 8.00.50727.42<br>Copyright (C) Microsoft Corporation.  All rights reserved.<br><br>/out:wintstest.exe <br>wintstest.obj <br>LINK : fatal error LNK1561: 必须定义入口点<br>');
+INSERT INTO `acm_result` VALUES ('000084', 'wints', '两数求和', 'Accepted', '15', '876544', '134', 'c++', '2010-06-23 21:26:22', '9', '编译成功');
+INSERT INTO `acm_result` VALUES ('000085', 'wints', '两数求和', 'Accepted', '140', '10338304', '356', 'java', '2010-06-23 21:27:20', '9', '编译成功');
+INSERT INTO `acm_result` VALUES ('000086', 'wints', '两数求和', 'Accepted', '15', '876544', '134', 'c++', '2010-06-23 21:30:19', '9', '编译成功');
+INSERT INTO `acm_result` VALUES ('000087', 'wints', '两数求和', 'Accepted', '15', '876544', '134', 'c++', '2010-06-23 21:32:57', '9', '编译成功');
+INSERT INTO `acm_result` VALUES ('000088', 'wints', '两数求和', 'Accepted', '15', '876544', '134', 'c++', '2010-06-23 21:34:24', '9', '编译成功');
+INSERT INTO `acm_result` VALUES ('000089', 'wints', '两数求和', 'Accepted', '30', '876544', '134', 'c++', '2010-06-23 21:38:26', '9', '编译成功');
+INSERT INTO `acm_result` VALUES ('000090', 'wints', '两数求和', 'Accepted', '15', '876544', '134', 'c++', '2010-06-23 21:53:18', '9', '编译成功');
+INSERT INTO `acm_result` VALUES ('000091', 'wints', '两数求和', 'Accepted', '155', '10321920', '356', 'java', '2010-06-23 21:53:57', '9', '编译成功');
+INSERT INTO `acm_result` VALUES ('000092', 'wints', 'To the Max', 'Compile Error', 'null', 'null', '1126', 'c++', '2010-08-08 16:59:53', '8', '');
+INSERT INTO `acm_result` VALUES ('000093', 'wints', 'To the Max', 'Compile Error', 'null', 'null', '1126', 'c++', '2010-08-08 21:15:43', '8', '');
+INSERT INTO `acm_result` VALUES ('000094', 'wints', 'To the Max', 'Compile Error', 'null', 'null', '1126', 'c++', '2010-08-08 21:20:33', '8', '');
+INSERT INTO `acm_result` VALUES ('000095', 'wints', 'Self Numbers', 'Compile Error', 'null', 'null', '477', 'c++', '2010-08-08 21:22:02', '16', '');
+INSERT INTO `acm_result` VALUES ('000096', 'wints', '两数求和', 'Accepted', '311', '11231232', '315', 'java', '2010-08-08 22:27:21', '9', '编译成功');
+INSERT INTO `acm_result` VALUES ('000097', 'wints', 'To the Max', 'Compile Error', 'null', 'null', '1127', 'c++', '2010-08-08 22:37:59', '8', '');
+INSERT INTO `acm_result` VALUES ('000098', 'wints', 'To the Max', 'null', 'null', 'null', '203', 'pascal', '2010-08-08 22:46:26', '8', 'null');
+INSERT INTO `acm_result` VALUES ('000099', 'wints', 'To the Max', 'null', 'null', 'null', '203', 'pascal', '2010-08-08 22:51:03', '8', 'null');
+INSERT INTO `acm_result` VALUES ('000100', 'wints', 'To the Max', 'null', 'null', 'null', '203', 'pascal', '2010-08-08 22:55:06', '8', 'null');
+INSERT INTO `acm_result` VALUES ('000101', 'wints', 'To the Max', 'Compile Error', 'null', 'null', '1127', 'c++', '2010-08-09 21:11:02', '8', 'wintstest.cpp<br>D:Program FilesMicrosoft Visual Studio 9.0VCINCLUDExlocale(342) : warning C4530: 使用了 C++ 异常处理程序，但未启用展开语义。请指定 /EHsc<br>Microsoft (R) Incremental Linker Version 9.00.21022.08<br>Copyright (C) Microsoft Corporation.  All rights reserved.<br><br>/out:wintstest.exe <br>wintstest.obj <br>LINK : fatal error LNK1104: 无法打开文件“kernel32.lib”<br>');
+INSERT INTO `acm_result` VALUES ('000102', 'wints', '两数求和', 'Accepted', '359', '11198464', '313', 'java', '2010-08-09 21:12:01', '9', '编译成功');
+INSERT INTO `acm_result` VALUES ('000103', 'wints', 'To the Max', 'Accepted', '15', '876544', '1129', 'c++', '2010-08-10 09:44:52', '8', '编译成功');
+INSERT INTO `acm_result` VALUES ('000104', 'wints', 'Self Numbers', 'Accepted', '31', '827392', '301', 'c++', '2010-08-10 10:03:50', '16', '编译成功');
+INSERT INTO `acm_result` VALUES ('000105', 'wints', 'Number Sequence', 'Accepted', '15', '868352', '381', 'c++', '2010-08-10 10:08:50', '7', '编译成功');
+INSERT INTO `acm_result` VALUES ('000106', 'wints', '两数求和', 'Accepted', '233', '11210752', '194', 'java', '2010-08-10 10:13:35', '9', '编译成功');
+INSERT INTO `acm_result` VALUES ('000107', 'wints', 'Counterfeit Dollar', 'Accepted', '30', '782336', '884', 'c++', '2010-08-10 10:18:11', '6', '编译成功');
+INSERT INTO `acm_result` VALUES ('000108', 'wushi', 'DRUNK JAILER', 'Compile Error', 'null', 'null', '15', 'c++', '2010-08-10 10:43:14', '17', 'wushitest.cpp<br>wushitest.cpp(2) : fatal error C1004: 发现意外的文件尾<br>');
+INSERT INTO `acm_result` VALUES ('000109', 'wints', 'Biorhythms(c,gcc)', 'Compile Error', 'null', 'null', '278', 'c++', '2010-08-10 16:57:36', '19', 'wintstest.cpp<br>wintstest.cpp(2) : error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int<br>wintstest.cpp(3) : error C3861: “scanf”: 找不到标识符<br>wintstest.cpp(9) : error C3861: “printf”: 找不到标识符<br>');
+INSERT INTO `acm_result` VALUES ('000110', 'wints', 'Biorhythms(c,gcc)', 'Compile Error', 'null', 'null', '278', 'gcc', '2010-08-10 16:58:05', '19', 'wintstest.cpp: In function `int main()@:<br>wintstest.cpp:3: error: `scanf@ was not declared in this scope<br>wintstest.cpp:9: error: `printf@ was not declared in this scope<br>');
+INSERT INTO `acm_result` VALUES ('000111', 'wints', 'Which is Next(pascal)', 'null', 'null', 'null', '499', 'pascal', '2010-08-10 17:04:30', '18', 'null');
+INSERT INTO `acm_result` VALUES ('000112', 'wints', 'Which is Next(pascal)', 'null', 'null', 'null', '499', 'pascal', '2010-08-10 17:05:17', '18', 'null');
+INSERT INTO `acm_result` VALUES ('000113', 'wushi', 'Which is Next(pascal)', 'null', 'null', 'null', '499', 'pascal', '2010-08-10 17:07:07', '18', 'null');
+INSERT INTO `acm_result` VALUES ('000114', 'wushi', 'Biorhythms(c,gcc)', 'Compile Error', 'null', 'null', '278', 'c', '2010-08-10 17:11:55', '19', 'g++: wushitest.cpp: No such file or directory<br>g++: no input files<br>');
+INSERT INTO `acm_result` VALUES ('000115', 'wints', 'To the Max', 'Accepted', '15', '876544', '706', 'c++', '2010-08-10 18:17:18', '8', '编译成功');
+INSERT INTO `acm_result` VALUES ('000116', 'wushi', 'Biorhythms(c,gcc)', 'Compile Error', 'null', 'null', '278', 'c', '2010-08-10 19:57:03', '19', 'g++: wushitest.cpp: No such file or directory<br>g++: no input files<br>');
+INSERT INTO `acm_result` VALUES ('000117', 'wints', 'Biorhythms(c,gcc)', 'null', 'null', 'null', '278', 'c', '2010-08-11 10:45:45', '19', 'null');
+INSERT INTO `acm_result` VALUES ('000118', 'wints', 'Which is Next(pascal)', 'null', 'null', 'null', '499', 'pascal', '2010-08-11 10:51:21', '18', 'null');
+INSERT INTO `acm_result` VALUES ('000119', 'wints', 'To the Max', 'Accepted', '30', '876544', '706', 'c++', '2010-08-11 10:54:19', '8', '编译成功');
+INSERT INTO `acm_result` VALUES ('000120', 'wints', '两数求和', 'Accepted', '327', '11190272', '194', 'java', '2010-08-11 10:55:13', '9', '编译成功');
+INSERT INTO `acm_result` VALUES ('000121', 'wints', 'Which is Next(pascal)', 'null', 'null', 'null', '499', 'pascal', '2010-08-14 11:39:25', '18', 'null');
+INSERT INTO `acm_result` VALUES ('000122', 'wints', 'Which is Next(pascal)', 'Accepted', '61', '1671168', '499', 'pascal', '2010-08-14 12:13:52', '18', '编译成功');
+INSERT INTO `acm_result` VALUES ('000123', 'wints', 'Biorhythms(c,gcc)', 'Accepted', '61', '782336', '278', 'c', '2010-08-14 12:15:50', '19', '编译成功');
+INSERT INTO `acm_result` VALUES ('000124', 'wints', 'Biorhythms(c,gcc)', 'Accepted', '61', '970752', '278', 'gcc', '2010-08-14 12:16:55', '19', '编译成功');
+INSERT INTO `acm_result` VALUES ('000125', 'wints', 'Which is Next(pascal)', 'Accepted', '46', '1671168', '499', 'pascal', '2010-08-14 21:10:57', '18', '编译成功');
+INSERT INTO `acm_result` VALUES ('000126', 'wushi', 'Which is Next(pascal)', 'Compile Error', 'null', 'null', '503', 'pascal', '2010-08-14 21:17:57', '18', 'Free Pascal Compiler version 2.4.0 [2009/12/18] for i386<br>Copyright (c) 1993-2009 by Florian Klaempfl<br>wushitest.pas(47,1) Error: (3203) Illegal expression<br>wushitest.pas(48) Fatal: (10026) There were 1 errors compiling module, stopping<br>Fatal: (1018) Compilation aborted<br>Error: D:FPC2.4.0ini386-Win32ppc386.exe returned an error exitcode (normal if you did not specify a source file to be compiled)<br>');
+INSERT INTO `acm_result` VALUES ('000127', 'wushi', 'Which is Next(pascal)', 'Accepted', '46', '1675264', '499', 'pascal', '2010-08-14 21:20:12', '18', '编译成功');
+INSERT INTO `acm_result` VALUES ('000128', 'wushi', 'Number Sequence', 'Compile Error', 'null', 'null', '8', 'c++', '2010-08-14 22:23:32', '7', 'wushitest.cpp<br>wushitest.cpp(2) : fatal error C1004: 发现意外的文件尾<br>');
+INSERT INTO `acm_result` VALUES ('000129', 'wints', 'To the Max', 'Accepted', '30', '876544', '706', 'c++', '2010-08-14 22:29:26', '8', '编译成功');
+INSERT INTO `acm_result` VALUES ('000130', 'wints', 'Self Numbers', 'Accepted', '15', '827392', '301', 'c++', '2010-08-15 17:06:21', '16', '编译成功');
+INSERT INTO `acmpacount` VALUES ('2', '1', '5月校内测试', 'wints', '0', '9', '5', null, '0', '0', '85', '2010-06-06 10:46:32', '2,1,4,5,6');
+INSERT INTO `acmpacount` VALUES ('3', '1', '5月校内测试', 'wints', '0', '8', '5', null, '0', '0', '20', '2010-06-08 12:32:05', '2,1,4,5,6');
+INSERT INTO `acmpacount` VALUES ('5', '1', '5月校内测试', 'wints', '0', '7', '5', null, '0', '0', '15', '2010-06-13 01:41:31', '2,1,4,5,6');
+INSERT INTO `acmpacount` VALUES ('6', '1', '5月校内测试', 'wints', '0', '3', '5', null, '0', '0', '0', '2010-06-13 10:18:14', '2,1,4,5,6');
+INSERT INTO `acmpacount` VALUES ('7', '1', '5月校内测试', 'wints', '0', '4', '5', null, '0', '0', '0', '2010-06-13 10:37:21', '2,1,4,5,6');
+INSERT INTO `acmpacount` VALUES ('8', '1', '5月校内测试', 'wints', '0', '6', '5', null, '0', '0', '3', '2010-06-13 10:37:36', '2,1,4,5,6');
+INSERT INTO `acmpacount` VALUES ('9', '4', '8月校内检查', 'wints', '0', null, '1', null, '0', '0', '12', '2010-06-14 15:15:08', '80');
+INSERT INTO `acmpacount` VALUES ('10', '4', '8月校内检查', 'wints', '0', null, '1', null, '0', '0', '20', '2010-06-22 20:08:09', '84');
+INSERT INTO `acmpacount` VALUES ('11', '1', '5月校内测试', 'wints', '1', '1', '5', null, '61', '888832', '132', '2010-06-23 08:00:57', '85,86,87,88,89');
+INSERT INTO `acmpacount` VALUES ('12', '1', '5月校内测试', 'wints', '0', '5', '5', null, '0', '0', '0', '2010-08-08 11:11:13', '90,91,92,93,94');
+INSERT INTO `acmpacount` VALUES ('13', '5', '8月摸底测试', 'wints', '0', '6', '4', '0', '0', '0', '2272', '2010-08-08 16:57:09', '178,179,180,181');
+INSERT INTO `acmpacount` VALUES ('14', '1', '5月校内测试', 'wints', '1', '2', '5', '79', '171', '11206656', '194', '2010-08-08 22:29:35', '95,96,97,98,99');
+INSERT INTO `acmpacount` VALUES ('15', '5', '8月摸底测试', 'wushi', '2', '4', '4', '46', '30', '1620', '1590', '2010-08-10 10:36:01', '1,2,3,4');
+INSERT INTO `acmpacount` VALUES ('16', '5', '8月摸底测试', 'wints', '4', '1', '4', '638', '107', '3276', '2272', '2010-08-10 12:35:55', '9,10,11,12');
+INSERT INTO `acmpacount` VALUES ('17', '5', '8月摸底测试', 'wushi', '3', '2', '4', '134', '76', '2428', '1891', '2010-08-14 22:23:08', '1,2,3,4');
+INSERT INTO `acmpacount` VALUES ('18', '5', '8月摸底测试', 'wints', '1', '5', '4', '25', '31', '856', '706', '2010-08-14 22:27:56', '5,6,7,8');
+INSERT INTO `acmpacount` VALUES ('19', '5', '8月摸底测试', 'wints', '2', '3', '4', '8', '30', '1664', '1007', '2010-08-15 17:05:56', '1,2,3,4');
+INSERT INTO `acmpacount` VALUES ('20', '5', '8月摸底测试', 'wints', '0', '7', '4', '999999', '0', '0', '999999', '2010-08-16 10:23:40', '1,2,3,4');
+INSERT INTO `acmpaper` VALUES ('1', '5月校内测试', '等待中', '竞赛试卷', '2010-08-08 21:30:00', '10:30:00', '12,9,6,2,1');
+INSERT INTO `acmpaper` VALUES ('4', '8月校内检查', '等待中', '竞赛试卷', '2010-08-10 17:30:00', '05:30:00', '4');
+INSERT INTO `acmpaper` VALUES ('5', '8月摸底测试', '等待中', '竞赛试卷', '2010-08-16 09:00:00', '04:58:00', '16,8,7,6');
+INSERT INTO `datas` VALUES ('3', '电子科大ACM测评', 'http://acm.uestc.edu.cn/ProblemList.aspx');
+INSERT INTO `datas` VALUES ('4', '北大POJ', 'http://acm.pku.edu.cn/JudgeOnline/');
+INSERT INTO `papers` VALUES ('2', '6月校内测试', '竞赛试卷', '进行中', '01:30:00', '2010-05-10 09:30:00', '50', '50', '9,13', '14,24');
+INSERT INTO `papers` VALUES ('4', '7月校内测试', '练习试卷', '等待中', '01:30:00', '2010-05-10 09:30:00', '50', '50', '13,16', '14,24');
+INSERT INTO `papers` VALUES ('6', '5月校内测试', '竞赛试卷', '进行中', '01:30:00 ', '2010-05-10 09:30:00', '40', '60', '23,21', '24,14');
+INSERT INTO `papers` VALUES ('7', '5月校内竞赛', '竞赛试卷', '已结束', '01:30:00 ', '2010-05-10 09:30:00', '50', '50', '23,22', '24,14');
+INSERT INTO `papers` VALUES ('10', '8月校内检查', '竞赛试卷', '进行中', '01:30:00 ', '2010-05-10 09:30:00', '40', '60', '18,16', '14,11');
+INSERT INTO `paresult` VALUES ('1', '2', '6月校内测试', 'wints', '50', '0', '2010-06-07 12:29:42');
+INSERT INTO `paresult` VALUES ('2', '2', '6月校内测试', 'wints', '50', '50', '2010-06-08 07:58:37');
+INSERT INTO `paresult` VALUES ('3', '2', '6月校内测试', 'wints', '25', '50', '2010-06-08 08:02:59');
+INSERT INTO `paresult` VALUES ('4', '2', '6月校内测试', 'wints', '25', '25', '2010-06-08 12:05:07');
+INSERT INTO `paresult` VALUES ('5', '4', '7月校内测试', 'wints', '50', '50', '2010-06-08 12:28:56');
+INSERT INTO `paresult` VALUES ('6', '4', '7月校内测试', 'wints', '50', '50', '2010-06-13 01:19:50');
+INSERT INTO `paresult` VALUES ('7', '5', '8月校内检查', 'wints', '38', '50', '2010-06-21 00:31:00');
+INSERT INTO `paresult` VALUES ('8', '6', '5月校内测试', 'wints', '20', '30', '2010-06-21 08:57:02');
+INSERT INTO `paresult` VALUES ('9', '6', '5月校内测试', 'wints', '0', '0', '2010-06-22 09:14:28');
+INSERT INTO `paresult` VALUES ('10', '6', '5月校内测试', 'wints', '0', '0', '2010-06-23 09:09:14');
+INSERT INTO `paresult` VALUES ('11', '10', '8月校内检查', 'wints', '40', '0', '2010-06-23 17:10:45');
+INSERT INTO `questions` VALUES ('00000001', '线性表采用链式存储时，结点的存储地址（   ）', '单选题', '必须是不连续的', '连续与否均可', '必须是连续的', '和头结点的存储地址相连续', 'B', null);
+INSERT INTO `questions` VALUES ('00000002', '将长度为n的单链表链接在长度为m的单链表之后的算法的时间复杂度为（  ）', '单选题', 'O（1）', 'O（n）', 'O（m）', 'O（m+n）', 'C', null);
+INSERT INTO `questions` VALUES ('00000003', '由两个栈共享一个向量空间的好处是：（   ）', '单选题', '减少存取时间，降低下溢发生的机率', '节省存储空间，降低上溢发生的机率', '减少存取时间，降低上溢发生的机率', '节省存储空间，降低下溢发生的机率', 'B', null);
+INSERT INTO `questions` VALUES ('00000004', '设数组data[m]作为循环队列SQ的存储空间，front为队头指针，rear为队尾指针，则执行出队操作后其头指针front值为（   ）', '单选题', 'front=front+1', 'front=(front+1)%(m-1)', 'front=(front-1)%m ', 'front=(front+1)%m', 'D', null);
+INSERT INTO `questions` VALUES ('00000005', '如下陈述中正确的是（    ）', '单选题', '串是一种特殊的线性表', '串的长度必须大于零', '串中元素只能是字母', '空串就是空白串', 'A', null);
+INSERT INTO `questions` VALUES ('00000006', '在标准ASCII字符集中，一个字符的编码占是用（）', '多选题', '4个字节', '2个字节 ', '1个字节 ', '7bit', 'ABD', '');
+INSERT INTO `questions` VALUES ('00000007', '若目标串的长度为n，模式串的长度为[n/3]，则执行模式匹配算法时，在最坏情况下的时间复杂度是（    ）', '单选题', 'O（1）', 'O（n）', 'O（n2）', 'O（n3）', 'C', null);
+INSERT INTO `questions` VALUES ('00000008', '一个非空广义表的表头（    ）', '单选题', '不可能是子表', '只能是子表', '只能是原子', '可以是子表或原子', 'D', null);
+INSERT INTO `questions` VALUES ('00000009', '在一棵度为3的树中,度为3的结点个数为2,度为2 的结点个数为1,则度为0的结点个数为(    )', '单选题', '4', '5', '6', '7', 'C', '11');
+INSERT INTO `questions` VALUES ('00000010', '在含n个顶点和e条边的无向图的邻接矩阵中,零元素的个数为(    )', '单选题', 'e ', '2e', 'n2－e', 'n2－2e', 'D', null);
+INSERT INTO `questions` VALUES ('00000011', '假设一个有n个顶点和e条弧的有向图用邻接表表示,则删除与某个顶点vi相关的所有弧的时间复杂度是(    )', '多选题', 'O(n)', 'O(e)', 'O(n+e)', 'O(n*e)', 'C', null);
+INSERT INTO `questions` VALUES ('00000012', '用某种排序方法对关键字序列（25，84，21，47，15，27，68，35，20）进行排序时，序列的变化情况如下：\r\n        20，15，21，25，47，27，68，35，84\r\n        15，20，21，25，35，27，47，68，84\r\n        15，20，21，25，27，35，47，68，84\r\n    则所采用的排序方法是（   ）\r\n', '单选题', '选择排序', '希尔排序', '归并排序', '快速排序', 'D', null);
+INSERT INTO `questions` VALUES ('00000013', '适于对动态查找表进行高效率查找的组织结构是（   ）', '单选题', '有序表', '分块有序表', '三叉排序树', '线性链表', 'C', '4');
+INSERT INTO `questions` VALUES ('00000014', '在一棵完全二叉树中，若编号为i的结点存在右孩子，则右孩子结点的编号为（）', '多选题', '2i ', '2i-1', '2i+1', '2i+2', 'C', '5');
+INSERT INTO `questions` VALUES ('00000015', '设高度为h的二叉树上只有度为0和度为2的结点，则此类二叉树中所包含的结点数至少为（）', '单选题', '2h', '2h-1', '2h+1', 'h+1', 'B', null);
+INSERT INTO `questions` VALUES ('00000016', '按照二叉树的定义，具有3个结点的二叉树有（）种状态。', '单选题', '5', '4', '3', '30', 'A', '7');
+INSERT INTO `questions` VALUES ('00000017', '若查找每个元素的概率相等，则在长度为n的顺序表上查找任意元素的平均查找长度为（）', '多选题', 'n', 'n+1', '(n-1)/2', '(n+1)/2', 'D', '8');
+INSERT INTO `questions` VALUES ('00000018', '顺序查找法适合于存储结构为（）的线性表。', '单选题', '散列存储', '顺序存储或链接存储', '压缩存储', '索引存储', 'A', null);
+INSERT INTO `questions` VALUES ('00000019', '对于顺序存储的有序表（5，12，20，26，37，42，46，50，64），若采用折半查找，则查找元素26的查找长度（）', '单选题', '2', '3', '4', '5', 'C', null);
+INSERT INTO `questions` VALUES ('00000020', '对线性表进行折半查找时，要求线性表必须（）', '单选题', '以顺序方式存储', '以链接方式存储', '以顺序方式存储，且结点按关键字有序排序', '以链接方式存储，且结点按关键字有序排序', 'C', '1');
+INSERT INTO `questions` VALUES ('00000021', '设单链表中指针p指向结点ai,指针f指向将要插入的新结点 x，则当x插在链表中两个数据元素ai和ai+1之间时，只要先修改（ ）后修改（）即可。', '多选题', 'p->next= f', 'p->next= p->next->next ', 'p->next=f->next', 'f->next= p->next', 'DA', '2');
+INSERT INTO `questions` VALUES ('00000022', '设单链表中指针p指向结点ai,指针f指向将要插入的新结点 x，则在链表中最后一个结点an之后插入时，只要先修改（）后修改（）即可。', '多选题', 'f->next= p', ' f->next= p->next', 'p->next=f', 'p->next= f->next', 'BC', '3');
+INSERT INTO `questions` VALUES ('00000023', '6', '单选题', '4', '4', '4', '4', 'A', '4');
+INSERT INTO `questions` VALUES ('00000024', '12345678', '多选题', '33', '44', '55', '66', 'ABC', '');
+INSERT INTO `student` VALUES ('000001', 'wints', '2606001014', '邱兴乾', '123', '我最喜欢的颜色', '红色', 'qqxingqian@163.com');
+INSERT INTO `student` VALUES ('000002', 'liuwei', '2606001012', '刘伟', '123', '我喜欢的颜色？', '红色', '02861823452');
+INSERT INTO `student` VALUES ('000003', 'maqing', '2606001013', '马清', '123', '我的生日？', '7月17日', '02861823452');
+INSERT INTO `student` VALUES ('000004', 'wushi', '2606001006', '黄务实', '123', '我的生日？', '7-17', '02861823452');
+INSERT INTO `student` VALUES ('000005', 'null', 'null', 'null', 'null', 'null', 'null', 'null');
+INSERT INTO `tb_manager` VALUES ('008', 'qq', '111');
+INSERT INTO `tb_manager` VALUES ('009', 'wints', '123');

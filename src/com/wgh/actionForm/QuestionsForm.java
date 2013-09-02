@@ -1,0 +1,184 @@
+package com.wgh.actionForm;
+
+
+import java.util.Date;
+
+import org.apache.struts.action.ActionForm;
+
+
+/** 
+ * MyEclipse Struts
+ * 
+ * XDoclet definition:
+ * @struts.form name="questionsForm"
+ */
+public class QuestionsForm extends ActionForm {
+	private String optionD;
+	private String optionC;
+	private String optionB;
+	private String optionA;	
+	private Date joinTime;
+	private String title;
+	private String answer;
+	private int ID;
+	private String type;
+	private String note;
+	private String[] delIdArray=new String[0];
+	private int[] idArrS;	
+	private int[] idArrM;	
+	private String[] answerArr=new String[0];
+	private String[] answerArrS;
+	private String[] answerArrM;
+//	private Object[] answerArrM=new Object[0];
+	private MoreSelect[] moreSelect;
+	private int cid;
+	private String course;
+	
+	
+	public String getCourse() {
+		return course;
+	}
+	public void setCourse(String course) {
+		this.course = course;
+	}
+	public int getCid() {
+		return cid;
+	}
+	public void setCid(int cid) {
+		this.cid = cid;
+	}
+	public String getOptionD() {
+		return optionD;
+	}
+	public void setOptionD(String optionD) {
+		this.optionD = optionD;
+	}
+
+	public String getOptionC() {
+		return optionC;
+	}
+	public void setOptionC(String optionC) {
+		this.optionC = optionC;
+	}
+
+	public String getOptionB() {
+		return optionB;
+	}
+	public void setOptionB(String optionB) {
+		this.optionB = optionB;
+	}
+
+	public String getOptionA() {
+		return optionA;
+	}
+	public void setOptionA(String optionA) {
+		this.optionA = optionA;
+	}
+
+	public Date getJoinTime() {
+		return joinTime;
+	}
+	public void setJoinTime(Date joinTime) {
+		this.joinTime = joinTime;
+	}
+
+	
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getAnswer() {
+		return answer;
+	}
+	public void setAnswer(String answer) {
+		this.answer = answer;
+	}
+
+	public int getID() {
+		return ID;
+	}
+	public void setID(int ID) {
+		this.ID = ID;
+	}
+
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getNote() {
+		return note;
+	}
+	public void setNote(String note) {
+		this.note = note;
+	}
+	public String[] getDelIdArray(){
+		return delIdArray;
+	}
+	public void setDelIdArray(String[] delIdArray){
+		this.delIdArray=delIdArray;
+	}
+	
+	public int[] getIdArrS(){
+		return idArrS;
+	}
+	public void setIdArrS(int[] idArrS){
+		this.idArrS=idArrS;
+	}
+	
+	public int[] getIdArrM(){
+		return idArrM;
+	}
+	public void setIdArrM(int[] idArrM){
+		this.idArrM=idArrM;
+	}
+	
+	public String[] getAnswerArr(){
+		return answerArr;
+	}
+	public void setAnswerArr(String[] answerArr){
+		this.answerArr=answerArr;
+	}
+	public String[] getAnswerArrS(){
+		return this.answerArrS;
+	}
+	public void setAnswerArrS(String[] answerArrS){
+		this.answerArrS=answerArrS;
+	}
+	public String getSani(int index){
+		return answerArrS[index];
+	}
+	public void setSize(int size){	
+		answerArrS = new String[size];
+		for(int i=0;i<answerArrS.length;i++){	
+			answerArrS[i] =" ";
+			System.out.println(i+":��ѡ��������С��"+answerArrS.length);
+		}
+		idArrS=new int[size];
+		
+	}
+
+	public MoreSelect[] getMoreSelect() {
+		return moreSelect;
+	}
+	public void setMoreSelect(MoreSelect[] moreSelect) {
+		this.moreSelect = moreSelect;
+	}
+	public void setMoreSize(int size){
+		idArrM=new int[size];
+		moreSelect=new MoreSelect[size];
+		for(int i=0;i<size;i++)
+			moreSelect[i]=new MoreSelect();
+		System.out.println("��ѡ�⣺"+moreSelect.length);
+	}
+	public String[] getAnswerArrM() {
+		return answerArrM;
+	}
+	public void setAnswerArrM(String[] answerArrM) {
+		this.answerArrM = answerArrM;
+	}	
+}

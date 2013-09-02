@@ -1,0 +1,82 @@
+package com.wgh.core;
+
+
+import java.sql.*;
+import java.util.Properties;
+
+public class ConnDB {
+	  public Connection conn = null;
+	  public Statement stmt = null;
+	  public ResultSet rs = null;	 
+	  private static String dbClassName ="com.mysql.jdbc.Driver";
+	  private static String dbUrl ="jdbc:mysql://127.0.0.1:3306/train";
+	  private static String user = "root";
+	  private static String pwd = "";
+	  public ConnDB(){	    
+	  }
+	  public static Connection getConnection() {
+	    Connection conn = null;
+	    try {
+	      Class.forName(dbClassName).newInstance();
+	      conn = DriverManager.getConnection(dbUrl,user,pwd);
+	    }
+	    catch (Exception ee) {
+	      ee.printStackTrace();
+	    }
+	    if (conn == null) {
+	      System.err.println(
+	          "璀﹀憡: DbConnectionManager.getConnection() 鑾峰緱鏁版嵁搴撻摼鎺ュけ璐�\r\n\r\n閾炬帴绫诲瀷:" +
+	          dbClassName + "\r\n閾炬帴浣嶇疆:" + dbUrl);
+	    }
+	    return conn;
+	  }
+	/*
+	 * 鍔熻兘锛氭墽琛屾煡璇㈣鍙�
+	 */
+	public ResultSet executeQuery(String sql) {
+		try {
+			conn = getConnection();
+			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_READ_ONLY);
+			rs = stmt.executeQuery(sql);
+		} catch (SQLException ex) {
+			System.err.println(ex.getMessage());
+		}
+		return rs;
+	}
+
+	/*
+	 * 鍔熻兘:鎵ц鏇存柊鎿嶄綔
+	 */
+	public int executeUpdate(String sql) {
+		int result = 0;
+		try {
+			conn = getConnection();					//璋冪敤getConnection()鏂规硶鏋勯�Connection瀵硅薄鐨勪竴涓疄渚媍onn
+			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_READ_ONLY);
+			result = stmt.executeUpdate(sql);		//鎵ц鏇存柊鎿嶄綔
+		} catch (SQLException ex) {
+			result = 0;
+		}
+		return result;
+	}
+
+	/*
+	 * 鍔熻兘:鍏抽棴鏁版嵁搴撶殑杩炴帴
+	 */
+	public void close() {
+		try {
+			if (rs != null) {
+				rs.close();
+			}
+			if (stmt != null) {
+				stmt.close();
+			}
+			if (conn != null) {
+				conn.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace(System.err);
+		}
+	}
+}
